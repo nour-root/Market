@@ -20,10 +20,9 @@ export default function FieldForm() {
 
     setTimeout(() => setRipple(null), 600);
   };
-  const [isClicked, setIsClicked] = useState(false);
+
   return (
     <form
-      onClick={() => setIsClicked(!isClicked)}
       className={`flex pointer-events-auto justify-between items-center bg-[#f3f5f9] rounded-xl w-[670px] max-lg:hidden border transition-colors duration-300
         hover:border-head`}
     >
