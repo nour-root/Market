@@ -20,8 +20,13 @@ export default function FieldForm() {
 
     setTimeout(() => setRipple(null), 600);
   };
+  const [isClicked, setIsClicked] = useState(false);
   return (
-    <form className="flex pointer-events-auto hover:outline-1 hover:outline-head focus:outline-1 focus:outline-primary justify-between items-center bg-[#f3f5f9] border border-gray-300 rounded-xl w-[670px] max-lg:hidden">
+    <form
+      onClick={() => setIsClicked(!isClicked)}
+      className={`flex pointer-events-auto justify-between items-center bg-[#f3f5f9] rounded-xl w-[670px] max-lg:hidden border transition-colors duration-300
+        hover:border-head`}
+    >
       <button className="px-4 border-r border-head/20 mr-3">
         <IoIosSearch className="text-dark-gray text-2xl" />
       </button>
