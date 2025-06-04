@@ -35,7 +35,7 @@ export default function LandingPage() {
                 Shop now
               </Button>
             </div>
-            <img className="lg:w-1/3" src="/public/nike-black.png" alt="" />
+            <img className="lg:w-1/3" src="/nike-black.png" alt="" />
           </div>
           <div className="embla__slide space-y-7 w-full lg:flex lg:gap-10 lg:items-center">
             <div className="space-y-10 lg:w-1/2">
@@ -50,7 +50,7 @@ export default function LandingPage() {
                 Shop now
               </Button>
             </div>
-            <img className="lg:w-1/3" src="/public/nike-black.png" alt="" />
+            <img className="lg:w-1/3" src="/nike-black.png" alt="" />
           </div>
         </div>
       </div>
