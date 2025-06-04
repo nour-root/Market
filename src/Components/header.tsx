@@ -145,7 +145,7 @@ export default function Header() {
       </div>
       <div className="px-6 py-4 flex items-center justify-between">
         <LuMenu className="text-icons-light-gray text-2xl lg:hidden" />
-        <img src="/public/logo2.svg" className="max-lg:hidden" alt="" />
+        <img src="/logo2.svg" className="max-lg:hidden" alt="" />
         <img
           src="/src/assets/bazaar-black-sm.svg"
           className="lg:hidden -mr-10"
