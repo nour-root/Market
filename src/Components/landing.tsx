@@ -19,7 +19,7 @@ export default function LandingPage() {
   }, [emblaApi]);
 
   return (
-    <section className="text-head max-lg:py-10 py-5 px-4">
+    <section className="text-head max-lg:py-10 py-5 px-4 bg-white">
       <div className="embla relative" ref={emblaRef}>
         <div className="embla__container">
           <div className="embla__slide space-y-7 w-full lg:flex lg:gap-10 lg:items-center">

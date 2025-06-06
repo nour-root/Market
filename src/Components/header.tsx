@@ -67,7 +67,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <header className="max-lg:border-0 border-b border-head/10">
+    <header className="max-lg:border-0 border-b border-head/10 bg-white">
       <div className="bg-head flex justify-between flex-wrap px-6 py-1 gap-2">
         <div className="flex w-full justify-between items-center lg:w-fit">
           <div className="flex items-center space-x-2">
@@ -223,7 +223,7 @@ export default function Header() {
                 initial={{ opacity: 0, scaleY: 0 }}
                 animate={{ opacity: 1, scaleY: 1 }}
                 exit={{ opacity: 0, scaleY: 1 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="origin-top w-[278px] rounded-xl bg-popover text-head shadow-md overflow-hidden transform"
               >
                 <DropdownMenuGroup className="space-y-2">
