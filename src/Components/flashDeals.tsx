@@ -15,7 +15,7 @@ export default function FlashDeals() {
   const [isLargeScreen, setIsLargeScreen] = useState(true);
 
   useEffect(() => {
-    const swiper = new Swiper(".swiper", {
+    new Swiper(".swiper", {
       loop: true,
       slidesPerView: 4,
       spaceBetween: 20,
