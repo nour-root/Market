@@ -69,7 +69,7 @@ export default function Card({ product }: { product: Product }) {
     </div>
   );
 }
-const Star = ({ fillPercentage }: { fillPercentage: number; key: number }) => {
+const Star = ({ fillPercentage }: { fillPercentage: number }) => {
   const id = Math.random().toString(36).substring(2, 9);
   return (
     <svg viewBox="0 0 24 24" width="20" height="20" className="shrink-0">
