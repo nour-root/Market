@@ -23,7 +23,7 @@ export default function FieldForm() {
 
   return (
     <form
-      className={`flex pointer-events-auto justify-between items-center bg-[#f3f5f9] rounded-xl w-[670px] max-lg:hidden border transition-colors duration-300
+      className={`flex pointer-events-auto justify-between items-center bg-[#f3f5f9] rounded-lg w-[670px] max-lg:hidden border transition-colors duration-300
         hover:border-head`}
     >
       <button className="px-4 border-r border-head/20 mr-3">
@@ -60,11 +60,8 @@ export default function FieldForm() {
           <SelectContent className="mt-1 w-[190px]  text-head">
             <SelectGroup>
               <SelectItem value="all">All Categories</SelectItem>
-              <SelectItem value="apple">Apple</SelectItem>
-              <SelectItem value="banana">Banana</SelectItem>
-              <SelectItem value="blueberry">Blueberry</SelectItem>
-              <SelectItem value="grapes">Grapes</SelectItem>
-              <SelectItem value="pineapple">Pineapple</SelectItem>
+              <SelectItem value="apple">Clothes</SelectItem>
+              <SelectItem value="banana">Electronics</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

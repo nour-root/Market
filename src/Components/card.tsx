@@ -2,7 +2,7 @@ import { FaPlus } from "react-icons/fa6";
 import { IoEye } from "react-icons/io5";
 import { MdFavoriteBorder } from "react-icons/md";
 
-export default function Card({ product }: any) {
+export default function Card({ product }) {
   const stars = [];
 
   for (let i = 1; i <= 5; i++) {
@@ -18,7 +18,7 @@ export default function Card({ product }: any) {
   return (
     <div className="swiper-slide h-[375px] cursor-pointer rounded-lg border border-head/5 bg-white">
       <div className="overflow-hidden flex flex-col justify-between">
-        <div className="relative w-full h-[250px] py-3 group flex justify-center">
+        <div className="relative w-full h-[250px] py-3 lg:group flex justify-center">
           <div className="bg-primary absolute w-fit h-fit text-xs text-white py-1 px-2 top-4 left-3 rounded-lg">
             25% off
           </div>
@@ -59,7 +59,7 @@ export default function Card({ product }: any) {
     </div>
   );
 }
-const Star = ({ fillPercentage }) => {
+const Star = ({ fillPercentage }: any) => {
   const id = Math.random().toString(36).substring(2, 9);
   return (
     <svg viewBox="0 0 24 24" width="20" height="20" className="shrink-0">
