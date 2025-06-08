@@ -25,12 +25,12 @@ export default function Search() {
       <div className="flex items-center justify-center w-full">
         <label
           htmlFor="search"
-          className="flex items-center bg-[#f3f5f9] rounded-l-lg px-3 w-full"
+          className="flex items-center bg-[#f3f5f9] rounded-l-lg px-3 w-full space-x-2"
         >
           <IoIosSearch className="text-icons-light-gray text-xl" />
           <input
             name="search"
-            className="text-icons-light-gray py-3 text-sm"
+            className="text-icons-light-gray py-3 text-sm outline-0"
             type="text"
             placeholder="Searching For..."
           />
