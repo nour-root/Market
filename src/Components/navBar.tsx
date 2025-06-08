@@ -3,14 +3,14 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 
 export default function NavBar() {
   return (
-    <nav className="Search-wind lg:hidden bg-white py-2 *:hover:text-primary *:cursor-pointer fixed z-10 top-[calc(100%-59.5px)] shadow-[-1px_-1px_10px_rgba(0,0,0,0.2)] w-full flex items-center justify-around text-title-p">
-      <div className="flex flex-col items-center gap-1">
-        <FiHome className="w-5 h-5 text-head" />
+    <nav className="Search-wind lg:hidden bg-white py-2 *:cursor-pointer fixed z-10 top-[calc(100%-59.5px)] shadow-[-1px_-1px_10px_rgba(0,0,0,0.2)] w-full flex items-center justify-around text-title-p">
+      <div className="flex flex-col items-center gap-1 hover:text-primary group">
+        <FiHome className="w-5 h-5 text-head group-hover:text-primary" />
         <p className="text-[13px] capitalize">Home</p>
       </div>
-      <div className="flex flex-col items-center gap-1">
+      <div className="flex flex-col items-center gap-1 group">
         <svg
-          className="fill-head"
+          className="fill-head group-hover:fill-primary"
           height="20"
           width="20"
           viewBox="0 0 24 24"
@@ -22,11 +22,13 @@ export default function NavBar() {
             fillRule="evenodd"
           />
         </svg>
-        <p className="text-[13px] capitalize">categories</p>
+        <p className="text-[13px] capitalize group-hover:text-primary">
+          categories
+        </p>
       </div>
-      <div className="flex flex-col items-center gap-1">
-        <MdOutlineShoppingBag className="w-5 h-5 text-head" />
-        <p className="text-[13px] capitalize">cart</p>
+      <div className="flex flex-col items-center gap-1 group">
+        <MdOutlineShoppingBag className="w-5 h-5 text-head group-hover:text-primary" />
+        <p className="text-[13px] capitalize group-hover:text-primary">cart</p>
       </div>
     </nav>
   );
