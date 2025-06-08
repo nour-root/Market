@@ -1,2 +1,2 @@
 import { atom } from "jotai";
-export const dropdownAtom = atom(false);
+export const dropdownAtom = atom<boolean>(false);
