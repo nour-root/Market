@@ -14,7 +14,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     GetAllProducts()
-      .then((p: object[]) => {
+      .then((p) => {
         setLoading(true);
         if (products.length === 0) {
           setProduct(p);
