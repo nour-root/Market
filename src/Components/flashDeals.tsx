@@ -28,7 +28,7 @@ export default function FlashDeals() {
           slidesPerView: 1,
         },
         640: {
-          slidesPerView: 1,
+          slidesPerView: 2,
         },
         768: {
           slidesPerView: 3,
