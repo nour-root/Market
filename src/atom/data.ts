@@ -6,6 +6,8 @@ type Product = {
   description: string;
   category: string;
   image: string;
-  rating: object;
+  rating: {
+    rate: number;
+  };
 };
 export const DataAtom = atom<Product[]>([]);

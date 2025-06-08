@@ -1,8 +1,18 @@
 import { FaPlus } from "react-icons/fa6";
 import { IoEye } from "react-icons/io5";
 import { MdFavoriteBorder } from "react-icons/md";
-
-export default function Card({ product }) {
+type Product = {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+  };
+};
+export default function Card({ product }: { product: Product }) {
   const stars = [];
 
   for (let i = 1; i <= 5; i++) {
@@ -59,7 +69,7 @@ export default function Card({ product }) {
     </div>
   );
 }
-const Star = ({ fillPercentage }: any) => {
+const Star = ({ fillPercentage }: { fillPercentage: number; key: number }) => {
   const id = Math.random().toString(36).substring(2, 9);
   return (
     <svg viewBox="0 0 24 24" width="20" height="20" className="shrink-0">
