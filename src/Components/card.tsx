@@ -28,7 +28,7 @@ export default function Card({ product }: { product: Product }) {
   return (
     <div className="swiper-slide h-[375px] cursor-pointer rounded-lg border border-head/5 bg-white">
       <div className="overflow-hidden flex flex-col justify-between">
-        <div className="relative w-full h-[250px] py-3 lg:group flex justify-center">
+        <div className="relative w-full h-[250px] py-3 group flex justify-center">
           <div className="bg-primary absolute w-fit h-fit text-xs text-white py-1 px-2 top-4 left-3 rounded-lg">
             25% off
           </div>
@@ -42,7 +42,7 @@ export default function Card({ product }: { product: Product }) {
           </div>
           <img
             src={product.image}
-            className="lg:w-1/2 lg:h-[90%] md:w-1/3 md:h-[80%]  max-sm:w-1/3 max-sm:h-[70%] transition-transform duration-400 transform group-hover:scale-80"
+            className="lg:w-1/2 lg:h-[90%] md:w-1/3 md:h-[80%]  max-sm:w-auto max-sm:h-full transition-transform duration-400 transform group-hover:scale-80"
             alt=""
           />
         </div>

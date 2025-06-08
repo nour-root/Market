@@ -59,7 +59,7 @@ export default function LandingPage() {
           <button
             key={index}
             onClick={() => emblaApi?.scrollTo(index)}
-            className={`w-4 h-2 rounded-full transform transition-colors duration-300 ${
+            className={`w-4 h-2 rounded-full transform transition-all duration-300 ${
               index === selectedIndex
                 ? "bg-primary scale-x-150"
                 : "bg-icons-light-gray/30 scale-x-100"
