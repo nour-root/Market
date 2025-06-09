@@ -23,8 +23,7 @@ export default function FieldForm() {
 
   return (
     <form
-      className={`flex pointer-events-auto justify-between items-center bg-[#f3f5f9] rounded-lg w-[670px] max-lg:hidden border transition-colors duration-300
-        hover:border-head`}
+      className={`flex pointer-events-auto border border-[#e3e9ef] focus-within:outline hover:border-head focus-within:border-0 focus-within:outline-primary justify-between items-center bg-[#f3f5f9] rounded-lg w-[670px] max-lg:hidden transition-colors duration-300`}
     >
       <button className="px-4 border-r border-head/20 mr-3">
         <IoIosSearch className="text-dark-gray text-2xl" />

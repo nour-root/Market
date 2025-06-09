@@ -1,10 +1,11 @@
 import "./App.css";
+import { Routes, Route } from "react-router";
 import Home from "./home";
 function App() {
   return (
-    <>
-      <Home />
-    </>
+    <Routes>
+      <Route index element={<Home />} />
+    </Routes>
   );
 }
 
