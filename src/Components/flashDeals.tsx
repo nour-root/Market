@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import "swiper/css";
 import { useSwiper } from "swiper/react";
 import {
   MdKeyboardDoubleArrowRight,
@@ -18,29 +17,6 @@ export default function FlashDeals() {
   const products = useAtomValue(DataAtom);
   const swiper = useSwiper();
   useEffect(() => {
-    // new Swiper(".swiper", {
-    //   loop: true,
-    //   slidesPerView: 4,
-    //   spaceBetween: 20,
-    //   navigation: {
-    //     nextEl: ".swiper-button-next",
-    //     prevEl: ".swiper-button-prev",
-    //   },
-    //   breakpoints: {
-    //     0: {
-    //       slidesPerView: 1,
-    //     },
-    //     640: {
-    //       slidesPerView: 2,
-    //     },
-    //     768: {
-    //       slidesPerView: 3,
-    //     },
-    //     1024: {
-    //       slidesPerView: 4,
-    //     },
-    //   },
-    // });
     const updateScreenSize = () => {
       setIsLargeScreen(window.innerWidth >= 1024);
     };
