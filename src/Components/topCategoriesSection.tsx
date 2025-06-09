@@ -62,67 +62,62 @@ export default function TopCategories() {
             prevEl: ".btn-prev-2",
             nextEl: ".btn-next-2",
           }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            640: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
           slidesPerView={3}
           spaceBetween={20}
           loop={true}
         >
           <SwiperSlide>
             <div className="swiper-slide overflow-hidden rounded-[12px] p-4 border border-[#e3e9ef]">
-              <img
-                src="/egor-myznik-5iQrhv2iT0c-unsplash (1).jpg"
-                className="w-full h-[120px] rounded-[12px]"
-                alt=""
-              />
+              <div className="relative">
+                <div className="absolute rounded-[12px] w-full h-full top-0 left-0 bg-transparent hover:bg-gray-500/20 transition-all duration-200"></div>
+                <img
+                  src="/egor-myznik-5iQrhv2iT0c-unsplash (1).jpg"
+                  className="w-full h-[120px] rounded-[12px] "
+                  alt=""
+                />
+              </div>
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="swiper-slide overflow-hidden rounded-[12px] p-4 border border-[#e3e9ef]">
-              <img
-                src="/quaritsch-photography-m2zuB8DqwyM-unsplash.jpg"
-                className="w-full h-[120px] rounded-[12px]"
-                alt=""
-              />
+              <div className="relative">
+                <div className="absolute rounded-[12px] w-full h-full top-0 left-0 bg-transparent hover:bg-gray-500/20 transition-all duration-200"></div>
+                <img
+                  src="/quaritsch-photography-m2zuB8DqwyM-unsplash.jpg"
+                  className="w-full h-[120px] img-slide rounded-[12px]"
+                  alt=""
+                />
+              </div>
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="swiper-slide overflow-hidden rounded-[12px] p-4 border border-[#e3e9ef]">
-              <img
-                src="/sheilabox-STx_5wSQTjg-unsplash.jpg"
-                className="w-full h-[120px] rounded-[12px]"
-                alt=""
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide overflow-hidden rounded-[12px] p-4 border border-[#e3e9ef]">
-              <img
-                src="/egor-myznik-5iQrhv2iT0c-unsplash (1).jpg"
-                className="w-full h-[120px] rounded-[12px]"
-                alt=""
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide overflow-hidden rounded-[12px] p-4 border border-[#e3e9ef]">
-              <img
-                src="/quaritsch-photography-m2zuB8DqwyM-unsplash.jpg"
-                className="w-full h-[120px] rounded-[12px]"
-                alt=""
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="swiper-slide overflow-hidden rounded-[12px] p-4 border border-[#e3e9ef]">
-              <img
-                src="/sheilabox-STx_5wSQTjg-unsplash.jpg"
-                className="w-full h-[120px] rounded-[12px]"
-                alt=""
-              />
+              <div className="relative">
+                <div className="absolute rounded-[12px] w-full h-full top-0 left-0 bg-transparent hover:bg-gray-500/20 transition-all duration-200"></div>
+                <img
+                  src="/sheilabox-STx_5wSQTjg-unsplash.jpg"
+                  className="w-full h-[120px] rounded-[12px]"
+                  alt=""
+                />
+              </div>
             </div>
           </SwiperSlide>
         </Swiper>
         <motion.button
-          // ref={prevRef}
           onClick={() => swiper.slidePrev()}
           initial={{ opacity: 0, borderRadius: 0, left: "-2px" }}
           animate={{
@@ -136,7 +131,6 @@ export default function TopCategories() {
           <MdKeyboardDoubleArrowLeft className="text-white" />
         </motion.button>
         <motion.button
-          // ref={nextRef}
           onClick={() => swiper.slideNext()}
           initial={{ opacity: 0, borderRadius: 0, right: "-2px" }}
           animate={{

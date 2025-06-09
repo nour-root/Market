@@ -64,6 +64,20 @@ export default function FlashDeals() {
           slidesPerView={4}
           spaceBetween={20}
           loop={true}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            640: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1024: {
+              slidesPerView: 4,
+            },
+          }}
         >
           {products.map((p) => (
             <SwiperSlide key={p.id}>
