@@ -8,6 +8,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { AiOutlineLoading } from "react-icons/ai";
 import NavBar from "./Components/navBar.js";
 import Search from "./Components/searchWindow.js";
+import TopCategories from "./Components/topCategoriesSection.js";
 export default function Home() {
   const setProduct = useSetAtom(DataAtom);
   const products = useAtomValue(DataAtom);
@@ -38,9 +39,9 @@ export default function Home() {
           <main className="bg-backGround max-lg:relative max-lg:-z-10:">
             <LandingPage />
             <FlashDeals />
+            <TopCategories />
             <NavBar />
             <Search />
-            {/* <div className="fixed w-full h-[2px] bg-primary top-0"></div> */}
           </main>
         </>
       )}

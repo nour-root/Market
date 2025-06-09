@@ -197,12 +197,12 @@ span.ripple {
 .animate-scale-out-y {
   animation: scale-out-y 150ms ease-in forwards 1;
 }
-.swiper-button-prev:after {
+/* .button-prev:after {
   content: "";
 }
-.swiper-button-next:after {
+.button-next:after {
   content: "";
-}
+} */
 .animate-slide-down {
   animation: slide-down 500ms cubic-bezier(0.4, 0, 0.2, 1) 0s 1 normal none
     running;

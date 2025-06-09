@@ -164,7 +164,7 @@ export default function Header() {
       <div
         className={`px-6 py-3 flex items-center justify-between w-full bg-white transition-all duration-100 ${
           isScrolled
-            ? "fixed z-10 shadow-[0_5px_10px_rgba(0,0,0,0.1)] animate-slide-down"
+            ? "fixed z-20 shadow-[0_5px_10px_rgba(0,0,0,0.1)] animate-slide-down"
             : "relative"
         }`}
       >
