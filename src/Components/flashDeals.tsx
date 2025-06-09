@@ -1,14 +1,12 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/swiper-bundle.css";
-
+import { useSwiper } from "swiper/react";
 import {
   MdKeyboardDoubleArrowRight,
   MdKeyboardDoubleArrowLeft,
 } from "react-icons/md";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useAtomValue } from "jotai";
 import { DataAtom } from "../atom/data";
@@ -18,8 +16,7 @@ export default function FlashDeals() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(true);
   const products = useAtomValue(DataAtom);
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+  const swiper = useSwiper();
   useEffect(() => {
     // new Swiper(".swiper", {
     //   loop: true,
@@ -83,18 +80,11 @@ export default function FlashDeals() {
       >
         <Swiper
           className="w-full h-full"
-          onInit={(swiper) => {
-            if (
-              swiper.params.navigation &&
-              typeof swiper.params.navigation === "object"
-            ) {
-              swiper.params.navigation.prevEl = prevRef.current;
-              swiper.params.navigation.nextEl = nextRef.current;
-              swiper.navigation.init();
-              swiper.navigation.update();
-            }
-          }}
           modules={[Navigation]}
+          navigation={{
+            prevEl: ".btn-prev-1",
+            nextEl: ".btn-next-1",
+          }}
           slidesPerView={4}
           spaceBetween={20}
           loop={true}
@@ -106,7 +96,7 @@ export default function FlashDeals() {
           ))}
         </Swiper>
         <motion.button
-          ref={prevRef}
+          onClick={() => swiper.slidePrev()}
           initial={{ opacity: 0, borderRadius: 0, left: "-2px" }}
           animate={{
             opacity: showButtons ? 1 : 0,
@@ -114,12 +104,12 @@ export default function FlashDeals() {
             left: showButtons ? "10px" : "0px",
           }}
           transition={{ duration: 0.2 }}
-          className="absolute after:content-['']  top-1/2 left-0  -translate-y-1/2 z-10 bg-dark-blue !w-9 !h-9 p-2 rounded-lg flex items-center justify-center"
+          className="btn-prev-1 absolute after:content-['']  top-1/2 left-0  -translate-y-1/2 z-10 bg-dark-blue !w-9 !h-9 p-2 rounded-lg flex items-center justify-center"
         >
           <MdKeyboardDoubleArrowLeft className="text-white" />
         </motion.button>
         <motion.button
-          ref={nextRef}
+          onClick={() => swiper.slideNext()}
           initial={{ opacity: 0, borderRadius: 0, right: "-2px" }}
           animate={{
             opacity: showButtons ? 1 : 0,
@@ -127,7 +117,7 @@ export default function FlashDeals() {
             right: showButtons ? "10px" : "0px",
           }}
           transition={{ duration: 0.2 }}
-          className="absolute after:content-[''] top-1/2 right-0 -translate-y-1/2 z-10 bg-dark-blue !w-9 !h-9 p-2 rounded-lg flex items-center justify-center"
+          className="btn-next-1 absolute after:content-[''] top-1/2 right-0 -translate-y-1/2 z-10 bg-dark-blue !w-9 !h-9 p-2 rounded-lg flex items-center justify-center"
         >
           <MdKeyboardDoubleArrowRight className="text-white" />
         </motion.button>
