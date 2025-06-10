@@ -45,7 +45,7 @@ export default function Home() {
               <Route
                 index
                 element={
-                  <main className="bg-backGround max-lg:relative max-lg:-z-10:">
+                  <main className="bg-backGround max-lg:relative max-lg:-z-10">
                     <LandingPage />
                     <FlashDeals />
                     <TopCategories />
@@ -54,7 +54,15 @@ export default function Home() {
                   </main>
                 }
               />
-              <Route path="products/:title" element={<Product />} />
+              <Route
+                path="products/:title"
+                element={
+                  <>
+                    <Product />
+                    <Search />
+                  </>
+                }
+              />
             </Route>
           </Routes>
         </>

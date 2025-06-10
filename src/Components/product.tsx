@@ -47,7 +47,7 @@ export default function Product() {
   }, []);
 
   return (
-    <div className="py-10 px-4 bg-backGround text-[#2B3445] grid gap-10 max-lg:grid-cols-1 grid-cols-2">
+    <div className="py-10 px-4 max-lg:relative max-lg:-z-10 bg-backGround text-[#2B3445] grid gap-10 max-lg:grid-cols-1 grid-cols-2">
       <div className="flex flex-col space-y-10">
         <div className="border border-[#e3e9ef] rounded-[24px] h-[300px] py-5">
           <img src={product?.image} className="h-full mx-auto" alt="" />
