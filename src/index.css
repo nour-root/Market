@@ -42,6 +42,7 @@
   --default-font-family: "Public Sans", sans-serif;
   --color-head: oklch(0.32 0.03 262.94);
   --color-dark-blue: oklch(0.33 0.09 255.11);
+  --color-very-dark-blue: rgb(15, 52, 96);
   --color-icons-light-gray: rgb(125, 135, 156);
   --color-light-gray: rgb(246, 249, 252);
   --color-dark-gray: rgb(125, 135, 156);

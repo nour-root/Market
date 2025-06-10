@@ -89,6 +89,12 @@ export default function TopCategories() {
                   className="w-full h-[120px] rounded-[12px] "
                   alt=""
                 />
+                <div className="absolute top-2 left-2 bg-very-dark-blue text-white capitalize w-fit text-xs px-2 py-1 rounded-lg">
+                  clothes
+                </div>
+                <div className="absolute top-2 right-2 bg-white  w-fit text-[11px] font-semibold px-2 py-1 rounded-lg">
+                  3k orders this week
+                </div>
               </div>
             </div>
           </SwiperSlide>
@@ -97,10 +103,16 @@ export default function TopCategories() {
               <div className="relative">
                 <div className="absolute rounded-[12px] w-full h-full top-0 left-0 bg-transparent hover:bg-gray-500/20 transition-all duration-200"></div>
                 <img
-                  src="/quaritsch-photography-m2zuB8DqwyM-unsplash.jpg"
+                  src="/category-1.webp"
                   className="w-full h-[120px] img-slide rounded-[12px]"
                   alt=""
                 />
+                <div className="absolute top-2 left-2 bg-very-dark-blue text-white capitalize w-fit text-xs px-2 py-1 rounded-lg">
+                  electronics
+                </div>
+                <div className="absolute top-2 right-2 bg-white  w-fit text-[11px] font-semibold px-2 py-1 rounded-lg">
+                  3k orders this week
+                </div>
               </div>
             </div>
           </SwiperSlide>
@@ -113,6 +125,12 @@ export default function TopCategories() {
                   className="w-full h-[120px] rounded-[12px]"
                   alt=""
                 />
+                <div className="absolute top-2 left-2 bg-very-dark-blue text-white capitalize w-fit text-xs px-2 py-1 rounded-lg">
+                  jewelery
+                </div>
+                <div className="absolute top-2 right-2 bg-white  w-fit text-[11px] font-semibold px-2 py-1 rounded-lg">
+                  3k orders this week
+                </div>
               </div>
             </div>
           </SwiperSlide>
