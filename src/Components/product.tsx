@@ -1,10 +1,12 @@
 import GetAllProductById from "@/data/getAllProductById";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import type { Product } from "@/store/types";
 import GetAllProducts from "@/data/getAllProducts";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import { IoIosArrowBack } from "react-icons/io";
+
 export default function Product() {
   const [product, setProduct] = useState<Product | null>(null);
   const { title } = useParams<{ title: string | undefined }>();
@@ -47,81 +49,90 @@ export default function Product() {
   }, []);
 
   return (
-    <div className="py-10 px-4 max-lg:relative max-lg:-z-10 bg-backGround text-[#2B3445] grid gap-10 max-lg:grid-cols-1 grid-cols-2">
-      <div className="flex flex-col space-y-10">
-        <div className="border border-[#e3e9ef] rounded-[24px] h-[300px] py-5">
-          <img src={product?.image} className="h-full mx-auto" alt="" />
-        </div>
-        <div
-          className="flex justify-center items-center gap-4"
-          onClick={handleClickImage}
-        >
-          <div className="relative before:absolute border img-active rounded-[12px] w-fit h-fit px-5 py-5">
-            <img
-              src={product?.image}
-              className="w-[64px] h-[64px] mx-auto"
-              alt=""
-            />
-          </div>
-          <div className="relative border border-[#e3e9ef] rounded-[12px] w-fit h-fit px-5 py-5 before:absolute img-notActive">
-            <img
-              src={product?.image}
-              className="w-[64px] h-[64px] mx-auto"
-              alt=""
-            />
-          </div>
-        </div>
+    <div className="py-5 px-4 max-lg:relative max-lg:z-10 bg-backGround text-[#2B3445] flex flex-col items-center gap-5">
+      <div className="w-full h-fit">
+        <Link to={`/`}>
+          <button className="">
+            <IoIosArrowBack className="text-3xl" />
+          </button>
+        </Link>
       </div>
-      <div className="space-y-6">
-        <h1 className="text-[#2B3445] font-semibold text-3xl">
-          {product?.title}
-        </h1>
-        <div className="flex items-center gap-2">
-          <p>Rated:</p>
-          {product && (
-            <div className="flex items-center gap-1">
-              <Star key={product.id} p={product} />
+      <div className="grid gap-10 max-lg:grid-cols-1 grid-cols-2">
+        <div className="flex flex-col space-y-10">
+          <div className="border border-[#e3e9ef] rounded-[24px] h-[300px] py-5">
+            <img src={product?.image} className="h-full mx-auto" alt="" />
+          </div>
+          <div
+            className="flex justify-center items-center gap-4"
+            onClick={handleClickImage}
+          >
+            <div className="relative before:absolute border img-active rounded-[12px] w-fit h-fit px-5 py-5">
+              <img
+                src={product?.image}
+                className="w-[64px] h-[64px] mx-auto"
+                alt=""
+              />
             </div>
-          )}
-          <span>({product?.rating.rate})</span>
-        </div>
-        <p>{product?.description}</p>
-        <div className="space-y-3">
-          <p>Option</p>
-          <div className="flex items-center gap-3 text-sm">
-            <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-              option 1
-            </button>
-            <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-              option 1
-            </button>
-            <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-              option 1
-            </button>
-            <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-              option 1
-            </button>
+            <div className="relative border border-[#e3e9ef] rounded-[12px] w-fit h-fit px-5 py-5 before:absolute img-notActive">
+              <img
+                src={product?.image}
+                className="w-[64px] h-[64px] mx-auto"
+                alt=""
+              />
+            </div>
           </div>
         </div>
-        <div className="space-y-3">
-          <p>Type</p>
-          <div className="flex items-center gap-3 text-sm">
-            <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-              type 1
-            </button>
-            <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-              type 2
-            </button>
-            <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-              type 3
-            </button>
+        <div className="space-y-6">
+          <h1 className="text-[#2B3445] font-semibold text-3xl">
+            {product?.title}
+          </h1>
+          <div className="flex items-center gap-2">
+            <p>Rated:</p>
+            {product && (
+              <div className="flex items-center gap-1">
+                <Star key={product.id} p={product} />
+              </div>
+            )}
+            <span>({product?.rating.rate})</span>
           </div>
-        </div>
-        <div>
-          <p className="text-primary font-semibold text-2xl">
-            ${product?.price}
-          </p>
-          <p className="text-sm">Stock Available</p>
+          <p>{product?.description}</p>
+          <div className="space-y-3">
+            <p>Option</p>
+            <div className="flex items-center gap-3 text-sm">
+              <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
+                option 1
+              </button>
+              <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
+                option 1
+              </button>
+              <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
+                option 1
+              </button>
+              <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
+                option 1
+              </button>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <p>Type</p>
+            <div className="flex items-center gap-3 text-sm">
+              <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
+                type 1
+              </button>
+              <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
+                type 2
+              </button>
+              <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
+                type 3
+              </button>
+            </div>
+          </div>
+          <div>
+            <p className="text-primary font-semibold text-2xl">
+              ${product?.price}
+            </p>
+            <p className="text-sm">Stock Available</p>
+          </div>
         </div>
       </div>
     </div>
