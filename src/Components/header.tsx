@@ -69,6 +69,9 @@ export default function Header() {
 
     setTimeout(() => setRipple(null), 0);
   };
+  if (!search) {
+    document.body.style.overflowY = "auto";
+  }
   const [isOpen, setIsOpen] = useState<boolean>(false);
   useEffect(() => {
     const handleScroll = () => {

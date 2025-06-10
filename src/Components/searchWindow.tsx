@@ -11,7 +11,7 @@ export default function Search() {
   }
   return (
     <div
-      className={`fixed z-20 bg-white py-6 px-4 transition-all duration-200 ${
+      className={`fixed z-50 bg-white py-6 px-4 transition-all duration-200 ${
         state ? "top-0" : "-top-full"
       } w-full h-full flex flex-col flex-wrap items-center gap-6`}
     >
