@@ -1,6 +1,6 @@
 import { IoMdClose } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
-import { SearchWindow } from "@/atom/searchWindow";
+import { SearchWindow } from "@/store/searchWindow";
 import { useAtomValue, useSetAtom } from "jotai";
 export default function Search() {
   const state = useAtomValue(SearchWindow);

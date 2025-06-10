@@ -57,7 +57,7 @@ export default function Card({ product }: { product: Product }) {
                 {`$` + product.price}
               </p>
               <del className="text-icons-light-gray text-xs font-semibold">
-                ${Math.floor(product.price - 0.25)}
+                ${product.price - 0.25}
               </del>
             </div>
             <button className="border-[.5px] border-primary/50 text-primary rounded-lg p-[5px] transition-all duration-200 hover:outline hover:bg-primary/5 cursor-pointer">

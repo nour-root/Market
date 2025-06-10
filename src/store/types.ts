@@ -1,5 +1,4 @@
-import { atom } from "jotai";
-type Product = {
+export type Product = {
   id: number;
   title: string;
   price: number;
@@ -10,4 +9,3 @@ type Product = {
     rate: number;
   };
 };
-export const DataAtom = atom<Product[]>([]);

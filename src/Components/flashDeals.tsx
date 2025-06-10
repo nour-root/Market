@@ -8,8 +8,9 @@ import {
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useAtomValue } from "jotai";
-import { DataAtom } from "../atom/data";
+import { DataAtom } from "../store/data";
 import Card from "./card";
+import { Link } from "react-router";
 export default function FlashDeals() {
   const [hovered, setHovered] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -81,7 +82,9 @@ export default function FlashDeals() {
         >
           {products.map((p) => (
             <SwiperSlide key={p.id}>
-              <Card product={p} key={p.id} />
+              <Link to={`products/${p.title}`}>
+                <Card product={p} key={p.id} />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

@@ -25,6 +25,7 @@
     "jotai": "^2.12.4",
     "lucide-react": "^0.511.0",
     "motion": "^12.16.0",
+    "nprogress": "^0.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.56.4",

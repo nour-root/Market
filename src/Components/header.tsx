@@ -6,7 +6,7 @@ import { FaInstagram } from "react-icons/fa";
 import { LuMinus } from "react-icons/lu";
 import { Button } from "./ui/button";
 import { useAtomValue, useSetAtom } from "jotai";
-import { dropdownAtom } from "../atom/dropDownAtom.js";
+import { dropdownAtom } from "../store/dropDownAtom.js";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { LuMenu } from "react-icons/lu";
 import { IoIosSearch } from "react-icons/io";
@@ -29,7 +29,7 @@ import {
   DropdownMenuSubTrigger,
 } from "./ui/dropdown-menu.js";
 import { useEffect, useState } from "react";
-import { SearchWindow } from "../atom/searchWindow.js";
+import { SearchWindow } from "../store/searchWindow.js";
 export default function Header() {
   const state = useAtomValue(dropdownAtom);
   const setState = useSetAtom(dropdownAtom);
