@@ -76,7 +76,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 100);
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -111,7 +111,7 @@ export default function Header() {
                 initial={{ scaleY: 0, height: 0, opacity: 0 }}
                 animate={{ scaleY: 1, height: "auto", opacity: 1 }}
                 exit={{ scaleY: 0, height: 0, opacity: 0 }}
-                transition={{ duration: 0.11 }}
+                transition={{ duration: 0.2 }}
                 className={`menu transform origin-top w-full flex items-center lg:h-auto lg:opacity-100 lg:hidden`}
               >
                 <DropdownMenu>
