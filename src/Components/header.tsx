@@ -30,6 +30,7 @@ import {
 } from "./ui/dropdown-menu.js";
 import { useEffect, useState } from "react";
 import { SearchWindow } from "../store/searchWindow.js";
+
 export default function Header() {
   const state = useAtomValue(dropdownAtom);
   const setState = useSetAtom(dropdownAtom);
@@ -38,7 +39,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [ripple, setRipple] = useState<{ x: number; y: number } | null>(null);
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const button = e.currentTarget;
     const circle = document.createElement("span");
     const diameter = Math.max(button.clientWidth, button.clientHeight);
@@ -75,7 +76,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -165,13 +166,16 @@ export default function Header() {
         </div>
       )}
       <div
-        className={`px-6 py-3 flex items-center justify-between w-full bg-white transition-all duration-100 ${
+        className={`px-6 py-3 flex items-center justify-between w-full bg-white transition-all duration-75 ${
           isScrolled
             ? "fixed z-20 shadow-[0_5px_10px_rgba(0,0,0,0.1)] animate-slide-down"
             : "relative"
         }`}
       >
-        <button className="hover:bg-[#4b566b0a] p-2 rounded-2xl lg:hidden">
+        <button
+          className="hover:bg-[#4b566b0a] p-2 rounded-2xl lg:hidden relative overflow-hidden"
+          onClick={(e) => handleClick(e)}
+        >
           <LuMenu className="text-icons-light-gray text-2xl" />
         </button>
         <div className="flex items-center space-x-4 max-lg:hidden">
@@ -333,11 +337,15 @@ export default function Header() {
               setSearch(!search);
               document.body.style.overflowY = "hidden";
             }}
-            className="relative overflow-hidden inline-flex items-center justify-center w-10 h-10 rounded-full  cursor-pointer "
+            className="relative hover:bg-[#4b566b0a] overflow-hidden inline-flex items-center justify-center w-10 h-10 rounded-xl  cursor-pointer "
           >
             <IoIosSearch className="search text-icons-light-gray text-2xl lg:hidden relative overflow-hidden" />
           </div>
-          <button type="button" className="">
+          <button
+            type="button"
+            className="relative overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl"
+            onClick={(e) => handleClick(e)}
+          >
             <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
           </button>
         </div>
