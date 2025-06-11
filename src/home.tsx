@@ -11,13 +11,20 @@ import Search from "./Components/searchWindow.js";
 import TopCategories from "./Components/topCategoriesSection.js";
 import { Routes, Route } from "react-router";
 import Product from "./Components/product.js";
-
+import Cart from "./Components/cart.js";
+import { useLocation } from "react-router";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 export default function Home() {
   const setProduct = useSetAtom(DataAtom);
   const products = useAtomValue(DataAtom);
-
+  const location = useLocation();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    NProgress.start();
+    const timeout = setTimeout(() => {
+      NProgress.done();
+    }, 500);
     GetAllProducts()
       .then((p) => {
         setLoading(true);
@@ -31,7 +38,8 @@ export default function Home() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+    return () => clearTimeout(timeout);
+  }, [location.pathname]);
 
   return (
     <>
@@ -60,6 +68,17 @@ export default function Home() {
                   <>
                     <Product />
                     <Search />
+                    <NavBar />
+                  </>
+                }
+              />
+              <Route
+                path="/cart"
+                element={
+                  <>
+                    <Search />
+                    <Cart />
+                    <NavBar />
                   </>
                 }
               />

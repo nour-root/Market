@@ -1,16 +1,21 @@
 import { FiHome } from "react-icons/fi";
 import { MdOutlineShoppingBag } from "react-icons/md";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
+
 export default function NavBar() {
-  return (
-    <nav className="Search-wind lg:hidden bg-white py-2 *:cursor-pointer fixed z-10 top-[calc(100%-59.5px)] shadow-[-1px_-1px_10px_rgba(0,0,0,0.2)] w-full flex items-center justify-around text-title-p">
-      <Link to={"/"}>
-        <div className="flex flex-col items-center gap-1 hover:text-primary group">
-          <FiHome className="w-5 h-5 text-head group-hover:text-primary" />
-          <p className="text-[13px] capitalize">Home</p>
-        </div>
-      </Link>
-      <div className="flex flex-col items-center gap-1 group">
+  const location = useLocation();
+  const pathname = location.pathname;
+  const links = [
+    {
+      to: "/",
+      label: "Home",
+      icon: <FiHome className="w-5 h-5" />,
+      active: pathname === "/",
+    },
+    {
+      to: "/categories",
+      label: "Categories",
+      icon: (
         <svg
           className="fill-head group-hover:fill-primary"
           height="20"
@@ -24,14 +29,32 @@ export default function NavBar() {
             fillRule="evenodd"
           />
         </svg>
-        <p className="text-[13px] capitalize group-hover:text-primary">
-          categories
-        </p>
-      </div>
-      <div className="flex flex-col items-center gap-1 group">
-        <MdOutlineShoppingBag className="w-5 h-5 text-head group-hover:text-primary" />
-        <p className="text-[13px] capitalize group-hover:text-primary">cart</p>
-      </div>
+      ),
+      active: pathname === "/categories",
+    },
+    {
+      to: "/cart",
+      label: "Cart",
+      icon: <MdOutlineShoppingBag className="w-5 h-5" />,
+      active: pathname === "/cart",
+    },
+  ];
+  return (
+    <nav className="Search-wind lg:hidden bg-white py-2 *:cursor-pointer fixed z-10 top-[calc(100%-59.5px)] shadow-[-1px_-1px_10px_rgba(0,0,0,0.2)] w-full flex items-center justify-around text-title-p">
+      {links.map(({ to, label, icon, active }) => (
+        <Link to={to} key={label}>
+          <div
+            className={`flex flex-col items-center gap-1 group ${
+              active ? "text-primary" : "text-head"
+            }`}
+          >
+            <div className="group-hover:text-primary">{icon}</div>
+            <p className="text-[13px] capitalize group-hover:text-primary">
+              {label}
+            </p>
+          </div>
+        </Link>
+      ))}
     </nav>
   );
 }

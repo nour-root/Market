@@ -30,7 +30,7 @@ import {
 } from "./ui/dropdown-menu.js";
 import { useEffect, useState } from "react";
 import { SearchWindow } from "../store/searchWindow.js";
-
+import { Link, useLocation } from "react-router";
 export default function Header() {
   const state = useAtomValue(dropdownAtom);
   const setState = useSetAtom(dropdownAtom);
@@ -38,6 +38,8 @@ export default function Header() {
   const setSearch = useSetAtom(SearchWindow);
   const [isScrolled, setIsScrolled] = useState(false);
   const [ripple, setRipple] = useState<{ x: number; y: number } | null>(null);
+  const location = useLocation();
+  const pathname = location.pathname;
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const button = e.currentTarget;
@@ -337,17 +339,22 @@ export default function Header() {
               setSearch(!search);
               document.body.style.overflowY = "hidden";
             }}
-            className="relative hover:bg-[#4b566b0a] overflow-hidden inline-flex items-center justify-center w-10 h-10 rounded-xl  cursor-pointer "
+            className="relative lg:hidden hover:bg-[#4b566b0a] overflow-hidden inline-flex items-center justify-center w-10 h-10 rounded-xl  cursor-pointer "
           >
             <IoIosSearch className="search text-icons-light-gray text-2xl lg:hidden relative overflow-hidden" />
           </div>
-          <button
-            type="button"
-            className="relative overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl"
-            onClick={(e) => handleClick(e)}
+          <Link
+            to={"/cart"}
+            className={` ${pathname === "/cart" ? "hidden" : ""}`}
           >
-            <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
-          </button>
+            <button
+              type="button"
+              className={`relative overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl`}
+              onClick={(e) => handleClick(e)}
+            >
+              <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
+            </button>
+          </Link>
         </div>
       </div>
       {!isScrolled && (
