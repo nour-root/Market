@@ -52,7 +52,7 @@ export default function FieldForm() {
         <Select>
           <SelectTrigger
             onClick={handleClick}
-            className="btn w-full data-[size=default]:h-full ring-0 shadow-none rounded-l-none  rounded-r text-dark-gray bg-transparent focus-visible:ring-0 not-focus-visible:border-none  focus-visible:border-0"
+            className="btn w-full flex justify-between data-[size=default]:h-full ring-0 shadow-none rounded-l-none  rounded-r text-dark-gray bg-transparent focus-visible:ring-0 not-focus-visible:border-none  focus-visible:border-0"
           >
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
