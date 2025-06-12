@@ -40,7 +40,7 @@ export default function NavBar() {
     },
   ];
   return (
-    <nav className="Search-wind lg:hidden bg-white py-2 *:cursor-pointer fixed z-10 top-[calc(100%-59.5px)] shadow-[-1px_-1px_10px_rgba(0,0,0,0.2)] w-full flex items-center justify-around text-title-p">
+    <nav className="Search-wind lg:hidden bg-white py-2 *:cursor-pointer fixed z-10 bottom-0 shadow-[-1px_-1px_10px_rgba(0,0,0,0.2)] w-full flex items-center justify-around text-title-p">
       {links.map(({ to, label, icon, active }) => (
         <Link to={to} key={label}>
           <div

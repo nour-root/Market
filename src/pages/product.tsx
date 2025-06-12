@@ -3,16 +3,16 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import type { Product } from "@/store/types";
 import GetAllProducts from "@/data/getAllProducts";
-import NProgress from "nprogress";
-import "nprogress/nprogress.css";
 import { IoIosArrowBack } from "react-icons/io";
 import { AiOutlineLoading } from "react-icons/ai";
-
+import { useAtomValue, useSetAtom } from "jotai";
+import { loadingAtom } from "@/store/loading";
 export default function Product() {
   const [product, setProduct] = useState<Product | null>(null);
   const { title } = useParams<{ title: string | undefined }>();
   const productTitle = title ? decodeURIComponent(title) : "";
-  const [loading, setLoading] = useState(true);
+  const loading = useAtomValue(loadingAtom);
+  const setLoading = useSetAtom(loadingAtom);
   function handleClickImage(e: React.MouseEvent<HTMLDivElement>) {
     const image = e.target as HTMLElement;
     const div = e.currentTarget.children as HTMLCollectionOf<HTMLElement>;
@@ -38,19 +38,18 @@ export default function Product() {
           GetAllProductById(p.id)
             .then((p) => {
               setLoading(true);
-              NProgress.start();
               setProduct(p);
             })
             .catch((error) => console.error(error))
             .finally(() => {
-              NProgress.done();
               setLoading(false);
             });
         } else {
           setProduct(null);
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -105,43 +104,15 @@ export default function Product() {
                 <span>({product?.rating.rate})</span>
               </div>
               <p>{product?.description}</p>
-              <div className="space-y-3">
-                <p>Option</p>
-                <div className="flex items-center gap-3 text-sm">
-                  <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-                    option 1
-                  </button>
-                  <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-                    option 1
-                  </button>
-                  <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-                    option 1
-                  </button>
-                  <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-                    option 1
-                  </button>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <p>Type</p>
-                <div className="flex items-center gap-3 text-sm">
-                  <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-                    type 1
-                  </button>
-                  <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-                    type 2
-                  </button>
-                  <button className="border border-[#e3e9ef] hover:bg-[#4b566b0a] px-3 py-1 rounded-lg">
-                    type 3
-                  </button>
-                </div>
-              </div>
               <div>
                 <p className="text-primary font-semibold text-2xl">
                   ${product?.price}
                 </p>
                 <p className="text-sm">Stock Available</p>
               </div>
+              <button className="text-sm text-white capitalize bg-primary px-7 py-2 rounded-[8px]">
+                add to cart
+              </button>
             </div>
           </div>
         </>

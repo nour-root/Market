@@ -11,6 +11,7 @@ import { useAtomValue } from "jotai";
 import { DataAtom } from "../store/data";
 import Card from "./card";
 import { Link } from "react-router";
+
 export default function FlashDeals() {
   const [hovered, setHovered] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
