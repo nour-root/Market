@@ -2,10 +2,14 @@ import { FaPlus, FaMinus } from "react-icons/fa6";
 import { HiXMark } from "react-icons/hi2";
 export default function Item_cart() {
   return (
-    <div className="bg-white rounded-[10px] shadow flex gap-2  max-[424px]:flex-col max-[424px]:items-center max-[424px]:relative">
-      <img src="/nike-black.png" className="w-1/3 max-[424px]:w-1/2" alt="" />
+    <div className="bg-white rounded-[10px] shadow flex gap-2 h-[150px]  max-[424px]:flex-col max-[424px]:items-center max-[424px]:relative">
+      <img
+        src="/nike-black.png"
+        className="w-1/3 max-[424px]:w-1/2 lg:w-1/4"
+        alt=""
+      />
       <div className="p-4 flex w-full items-start justify-between gap-1">
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 h-full justify-between">
           <p className="text-lg">NikeCourt Zoom Vapor Cage</p>
           <div className="flex space-x-2">
             <div className="text-icons-light-gray flex space-x-1">
