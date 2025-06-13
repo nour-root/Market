@@ -3,7 +3,7 @@ import { IoEye } from "react-icons/io5";
 import { MdFavoriteBorder } from "react-icons/md";
 import type { Product } from "@/store/types";
 import { Link } from "react-router";
-import Star from "../components/shared/star";
+import Star from "@/components/shared/star";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
