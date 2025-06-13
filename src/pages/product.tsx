@@ -1,11 +1,11 @@
-import GetAllProductById from "@/data/getAllProductById";
+import GetAllProductById from "../data/getProductById";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import type { Product } from "@/store/types";
-import GetAllProducts from "@/data/getAllProducts";
+import type { Product } from "../store/types";
+import GetAllProducts from "../data/getAllProducts";
 import { IoIosArrowBack } from "react-icons/io";
-import Loader from "@/components/shared/loader";
-import Star from "@/components/shared/star";
+import Loader from "../components/shared/loader";
+import Star from "../components/shared/star";
 
 export default function Product() {
   const [loading, setLoading] = useState(true);
@@ -52,7 +52,7 @@ export default function Product() {
         }
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [productTitle]);
 
   return (
     <div className="py-5 px-4 max-lg:relative max-lg:z-10 bg-backGround text-[#2B3445] flex flex-col items-center gap-5">

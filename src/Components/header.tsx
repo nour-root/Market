@@ -19,7 +19,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu.js";
+} from "./ui/dropdown-menu.js";
 import {
   DropdownMenuGroup,
   DropdownMenuItem,
@@ -27,7 +27,7 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-} from "@/components/ui/dropdown-menu.js";
+} from "./ui/dropdown-menu.js";
 import { useEffect, useState } from "react";
 import { SearchWindow } from "../store/searchWindow.js";
 import { useLocation } from "react-router";
