@@ -4,22 +4,22 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { ImFacebook2 } from "react-icons/im";
 import { FaInstagram } from "react-icons/fa";
 import { LuMinus } from "react-icons/lu";
-import { Button } from "./ui/button.js";
+import { Button } from "@/components/ui/button";
 import { useAtomValue, useSetAtom } from "jotai";
-import { dropdownAtom } from "../store/dropDownAtom.js";
+import { dropdownAtom } from "@/store/dropDownAtom";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { LuMenu } from "react-icons/lu";
 import { IoIosSearch } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
-import FieldForm from "./fieldForm.js";
+import FieldForm from "@/components/fieldForm";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu.js";
+} from "@/components/ui/dropdown-menu";
 import {
   DropdownMenuGroup,
   DropdownMenuItem,
@@ -27,9 +27,9 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-} from "./ui/dropdown-menu.js";
+} from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
-import { SearchWindow } from "../store/searchWindow.js";
+import { SearchWindow } from "@/store/searchWindow";
 import { useLocation } from "react-router";
 export default function Header() {
   const state = useAtomValue(dropdownAtom);

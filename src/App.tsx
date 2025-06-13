@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import GetAllProducts from "./data/getAllProducts";
-import { DataAtom } from "./store/data.js";
+import { DataAtom } from "./store/data";
 import { RouterProvider } from "react-router";
-import useRouter from "./hooks/use-router.js";
+import useRouter from "./hooks/use-router";
 import { useAtomValue, useSetAtom } from "jotai";
-import Loader from "@/components/shared/loader.js";
+import Loader from "@/components/shared/loader";
 
 function App() {
   const router = useRouter();

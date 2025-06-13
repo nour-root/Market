@@ -8,8 +8,8 @@ import {
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useAtomValue } from "jotai";
-import { DataAtom } from "../store/data";
-import Card from "./card";
+import { DataAtom } from "@/store/data";
+import Card from "@/components/card";
 
 export default function FlashDeals() {
   const [hovered, setHovered] = useState(false);

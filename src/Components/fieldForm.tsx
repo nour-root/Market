@@ -7,7 +7,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "@/components/ui/select";
 import { IoIosSearch } from "react-icons/io";
 export default function FieldForm() {
   const [ripple, setRipple] = useState<{ x: number; y: number } | null>(null);
