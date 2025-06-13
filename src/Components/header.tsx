@@ -30,7 +30,7 @@ import {
 } from "./ui/dropdown-menu.js";
 import { useEffect, useState } from "react";
 import { SearchWindow } from "../store/searchWindow.js";
-import { Link, useLocation } from "react-router";
+import { useLocation } from "react-router";
 export default function Header() {
   const state = useAtomValue(dropdownAtom);
   const setState = useSetAtom(dropdownAtom);
@@ -77,7 +77,7 @@ export default function Header() {
   }
   const [isOpen, setIsOpen] = useState<boolean>(false);
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       setIsScrolled(window.scrollY > 100);
     };
     window.addEventListener("scroll", handleScroll);
@@ -343,18 +343,16 @@ export default function Header() {
           >
             <IoIosSearch className="search text-icons-light-gray text-2xl lg:hidden relative overflow-hidden" />
           </div>
-          <Link
-            to={"/cart"}
-            className={` ${pathname === "/cart" ? "hidden" : ""}`}
+
+          <button
+            type="button"
+            className={`relative overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl  ${
+              pathname === "/cart" ? "hidden" : ""
+            }`}
+            onClick={(e) => handleClick(e)}
           >
-            <button
-              type="button"
-              className={`relative overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl`}
-              onClick={(e) => handleClick(e)}
-            >
-              <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
-            </button>
-          </Link>
+            <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
+          </button>
         </div>
       </div>
       {!isScrolled && (

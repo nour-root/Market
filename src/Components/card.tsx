@@ -1,30 +1,41 @@
 import { FaPlus } from "react-icons/fa6";
 import { IoEye } from "react-icons/io5";
 import { MdFavoriteBorder } from "react-icons/md";
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-  };
-};
+import type { Product } from "@/store/types";
+import { Link } from "react-router";
+import Star from "./shared/star";
+import { Button } from "./ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
 export default function Card({ product }: { product: Product }) {
-  const stars = [];
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    const button = e.currentTarget;
+    const circle = document.createElement("span");
+    const diameter = Math.max(button.clientWidth, button.clientHeight);
+    const radius = diameter / 2;
 
-  for (let i = 1; i <= 5; i++) {
-    const diff = product.rating.rate - i + 1;
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${
+      e.clientX - button.getBoundingClientRect().left - radius
+    }px`;
+    circle.style.top = `${
+      e.clientY - button.getBoundingClientRect().top - radius
+    }px`;
+    circle.className = "ripple"; //
 
-    let fill = 0;
-    if (diff >= 1) fill = 100;
-    else if (diff > 0) fill = Math.round(diff * 100);
-    else fill = 0;
+    const existingRipple = button.querySelector(".ripple");
+    if (existingRipple) {
+      existingRipple.remove();
+    }
 
-    stars.push(<Star key={i} fillPercentage={fill} />);
-  }
+    button.appendChild(circle);
+  };
   return (
     <div className="swiper-slide h-[375px] cursor-pointer rounded-lg border border-head/5 bg-white">
       <div className="overflow-hidden flex flex-col justify-between">
@@ -33,24 +44,60 @@ export default function Card({ product }: { product: Product }) {
             25% off
           </div>
           <div className="text-icons-light-gray/60 transition-opacity duration-400 group-hover:opacity-100 opacity-0 text-xl absolute top-4 right-5 space-y-1">
-            <div className="p-2 hover:bg-title-p/5 rounded-xl">
-              <IoEye />
-            </div>
-            <div className="p-2 hover:bg-title-p/5 rounded-xl">
+            <Dialog>
+              <DialogTrigger asChild>
+                <div
+                  className="p-2 hover:bg-title-p/5 rounded-xl relative overflow-hidden"
+                  onClick={handleClick}
+                >
+                  <IoEye />
+                </div>
+              </DialogTrigger>
+              <DialogContent className="!max-w-[800px] flex items-center gap-8 px-6">
+                <div className="w-1/2 h-full p-10">
+                  <img src={product.image} className="w-auto" alt="" />
+                </div>
+                <div className="w-full flex flex-col py-4 space-y-6">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl text-head">
+                      {product.title}
+                    </DialogTitle>
+                    <p className="text-3xl text-primary font-semibold">
+                      ${product.price}
+                    </p>
+                    <div className="flex space-x-2">
+                      <Star p={product} key={product.id} />
+                    </div>
+                    <DialogDescription className="text-title-p">
+                      {product.description}
+                    </DialogDescription>
+                  </DialogHeader>
+                  <Button className="bg-head rounded-xl py-6 px-10 hover:bg-head/90">
+                    Add to cart
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            <div
+              className="p-2 relative overflow-hidden hover:bg-title-p/5 rounded-xl"
+              onClick={handleClick}
+            >
               <MdFavoriteBorder />
             </div>
           </div>
-          <img
-            src={product.image}
-            className="lg:w-auto lg:h-full md:w-1/2 md:h-[80%]  max-sm:w-auto max-sm:h-full transition-transform duration-400 transform group-hover:scale-55 scale-65"
-            alt=""
-          />
+          <Link to={`products/${product.title}`}>
+            <img
+              src={product.image}
+              className="lg:w-auto lg:h-full md:w-1/2 md:h-[80%]  max-sm:w-auto max-sm:h-full transition-transform duration-400 transform group-hover:scale-55 scale-65"
+              alt=""
+            />
+          </Link>
         </div>
         <div className="border-t h-full border-head/20 py-6 px-4 flex flex-col gap-2">
           <p className="text-sm text-title-p text-ellipsis overflow-hidden text-nowrap">
             {product.title}
           </p>
-          <div className="flex items-center gap-2 text-title-p">{stars}</div>
           <div className="flex items-center justify-between">
             <div className="flex items-baseline gap-2">
               <p className="text-primary text-sm font-semibold">
@@ -69,20 +116,3 @@ export default function Card({ product }: { product: Product }) {
     </div>
   );
 }
-const Star = ({ fillPercentage }: { fillPercentage: number }) => {
-  const id = Math.random().toString(36).substring(2, 9);
-  return (
-    <svg viewBox="0 0 24 24" width="20" height="20" className="shrink-0">
-      <defs>
-        <linearGradient id={`grad-${id}`}>
-          <stop offset={`${fillPercentage}%`} stopColor="#facc15" />
-          <stop offset={`${fillPercentage}%`} stopColor="#e5e7eb" />
-        </linearGradient>
-      </defs>
-      <path
-        fill={`url(#grad-${id})`}
-        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-      />
-    </svg>
-  );
-};
