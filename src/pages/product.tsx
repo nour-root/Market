@@ -4,8 +4,8 @@ import { Link, useParams } from "react-router";
 import type { Product } from "@/store/types";
 import GetAllProducts from "@/data/getAllProducts";
 import { IoIosArrowBack } from "react-icons/io";
-import Loader from "@/components/shared/loader";
-import Star from "@/components/shared/star";
+import Loader from "@/Components/shared/loader";
+import Star from "@/Components/shared/star";
 
 export default function Product() {
   const [loading, setLoading] = useState(true);

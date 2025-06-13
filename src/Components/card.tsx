@@ -3,8 +3,8 @@ import { IoEye } from "react-icons/io5";
 import { MdFavoriteBorder } from "react-icons/md";
 import type { Product } from "@/store/types";
 import { Link } from "react-router";
-import Star from "@/components/shared/star";
-import { Button } from "@/components/ui/button";
+import Star from "./shared/star";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "./ui/dialog";
 export default function Card({ product }: { product: Product }) {
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const button = e.currentTarget;

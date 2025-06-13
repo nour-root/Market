@@ -4,7 +4,7 @@ import { DataAtom } from "./store/data";
 import { RouterProvider } from "react-router";
 import useRouter from "./hooks/use-router";
 import { useAtomValue, useSetAtom } from "jotai";
-import Loader from "@/components/shared/loader";
+import Loader from "@/Components/shared/loader";
 
 function App() {
   const router = useRouter();

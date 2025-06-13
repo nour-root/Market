@@ -1,6 +1,6 @@
-import FlashDeals from "@/components/flashDeals";
-import LandingPage from "@/components/landing";
-import TopCategories from "@/components/topCategoriesSection";
+import FlashDeals from "@/Components/flashDeals";
+import LandingPage from "@/Components/landing";
+import TopCategories from "@/Components/topCategoriesSection";
 
 const Home = () => {
   return (

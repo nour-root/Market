@@ -1,7 +1,7 @@
-import Item_cart from "@/components/item_cart";
-import InputCountry from "@/components/inputCountry";
+import Item_cart from "@/Components/item_cart";
+import InputCountry from "@/Components/inputCountry";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 export default function Cart() {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
