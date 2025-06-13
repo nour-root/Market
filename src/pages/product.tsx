@@ -76,14 +76,14 @@ export default function Product() {
                 className="flex justify-center items-center gap-4"
                 onClick={handleClickImage}
               >
-                <div className="relative before:absolute border img-active rounded-[12px] w-fit h-fit px-5 py-5">
+                <div className="relative transition-all duration-500 before:absolute border img-active rounded-[12px] w-fit h-fit px-5 py-5">
                   <img
                     src={product?.image}
                     className="w-[64px] h-[64px] mx-auto"
                     alt=""
                   />
                 </div>
-                <div className="relative border border-[#e3e9ef] rounded-[12px] w-fit h-fit px-5 py-5 before:absolute img-notActive">
+                <div className="relative transition-all duration-500 border border-[#e3e9ef] rounded-[12px] w-fit h-fit px-5 py-5 before:absolute img-notActive">
                   <img
                     src={product?.image}
                     className="w-[64px] h-[64px] mx-auto"
