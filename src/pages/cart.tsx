@@ -9,7 +9,7 @@ export default function Cart() {
   return (
     <div className="py-5 px-4 max-lg:relative max-lg:z-10 bg-backGround text-[#2B3445]">
       <div className="flex max-lg:flex-col gap-5">
-        <div className="flex w-full flex-col gap-6 max-h-[400px] overflow-y-scroll scroll cart-items p-2">
+        <div className="flex w-full flex-col gap-6 max-h-[400px] overflow-y-scroll cart-items p-2">
           <Item_cart />
         </div>
         <div className="bg-white lg:w-1/2 p-6 rounded-[12px] border border-head/5 flex flex-col">

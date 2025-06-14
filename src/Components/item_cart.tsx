@@ -2,7 +2,7 @@ import { FaPlus, FaMinus } from "react-icons/fa6";
 import { HiXMark } from "react-icons/hi2";
 export default function Item_cart() {
   return (
-    <div className="bg-white rounded-[10px] shadow flex gap-2 h-[150px]  max-[424px]:flex-col max-[424px]:items-center max-[424px]:relative">
+    <div className="bg-white rounded-[10px] shadow flex gap-2 h-[150px] max-[424px]:h-auto  max-[424px]:flex-col max-[424px]:items-center max-[424px]:relative">
       <img
         src="/nike-black.png"
         className="w-1/3 max-[424px]:w-1/2 lg:w-1/4"
