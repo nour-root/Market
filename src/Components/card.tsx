@@ -37,9 +37,9 @@ export default function Card({ product }: { product: Product }) {
     button.appendChild(circle);
   };
   return (
-    <div className="swiper-slide h-[375px] cursor-pointer rounded-lg border border-head/5 bg-white">
+    <div className="swiper-slide h-[468px] cursor-pointer rounded-lg border border-head/5 bg-white">
       <div className="overflow-hidden flex flex-col justify-between">
-        <div className="relative w-full h-[200px] py-3 group flex justify-center">
+        <div className="relative w-full h-[400px] py-3 group flex items-center justify-center overflow-hidden">
           <div className="bg-primary absolute w-fit h-fit text-xs text-white py-1 px-2 top-4 left-3 rounded-lg">
             25% off
           </div>
@@ -89,12 +89,12 @@ export default function Card({ product }: { product: Product }) {
           <Link to={`products/${product.title}`}>
             <img
               src={product.image}
-              className="lg:w-auto lg:h-full md:w-1/2 md:h-[80%]  max-sm:w-auto max-sm:h-full transition-transform duration-400 transform group-hover:scale-55 scale-65"
+              className="lg:h-full  w-auto max-sm:h-full transition-transform duration-400 transform group-hover:scale-55 scale-60"
               alt=""
             />
           </Link>
         </div>
-        <div className="border-t h-full border-head/20 py-6 px-4 flex flex-col gap-2">
+        <div className="border-t h-full border-head/20 py-6 px-4 flex flex-col gap-4">
           <p className="text-sm text-title-p text-ellipsis overflow-hidden text-nowrap">
             {product.title}
           </p>
