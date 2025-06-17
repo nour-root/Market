@@ -12,6 +12,13 @@ import { LuMenu } from "react-icons/lu";
 import { IoIosSearch } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
 import FieldForm from "../Components/fieldForm";
 import {
   DropdownMenu,
@@ -30,9 +37,14 @@ import {
 } from "../Components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
 import { SearchWindow } from "../store/searchWindow";
-import { useLocation } from "react-router";
+import { useLocation, Link } from "react-router";
+import Mini_item_cart from "./mini_item_cart";
+import { cart_items } from "@/store/cart_items";
+import { DataAtom } from "@/store/data";
+import type { Product } from "@/store/types";
 export default function Header() {
   const state = useAtomValue(dropdownAtom);
+  const products = useAtomValue(DataAtom);
   const setState = useSetAtom(dropdownAtom);
   const search = useAtomValue(SearchWindow);
   const setSearch = useSetAtom(SearchWindow);
@@ -40,6 +52,7 @@ export default function Header() {
   const [ripple, setRipple] = useState<{ x: number; y: number } | null>(null);
   const location = useLocation();
   const pathname = location.pathname;
+  const cartItems = useAtomValue(cart_items);
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const button = e.currentTarget;
@@ -343,16 +356,111 @@ export default function Header() {
           >
             <IoIosSearch className="search text-icons-light-gray text-2xl lg:hidden relative overflow-hidden" />
           </div>
-
-          <button
-            type="button"
-            className={`relative overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl  ${
-              pathname === "/cart" ? "hidden" : ""
-            }`}
-            onClick={(e) => handleClick(e)}
-          >
-            <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
-          </button>
+          <Link to={"/cart"}>
+            <button
+              type="button"
+              className={`relative overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl lg:hidden ${
+                pathname === "/cart" ? "hidden" : ""
+              }`}
+              onClick={(e) => handleClick(e)}
+            >
+              <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
+            </button>
+          </Link>
+          <Dialog>
+            <DialogTrigger asChild>
+              <div className="w-fit h-fit relative">
+                <button
+                  type="button"
+                  className={`relative overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl max-lg:hidden`}
+                  onClick={(e) => handleClick(e)}
+                >
+                  <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
+                </button>
+                {cartItems.length !== 0 ? (
+                  <div className="absolute w-5 h-5 rounded-full bg-primary -top-1 -right-1 text-sm flex items-center justify-center">
+                    {cartItems
+                      .map((order) => order.quantity)
+                      .reduce((a, c) => a + c, 0)}
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </DialogTrigger>
+            <DialogContent className="!max-w-[400px] !h-[100%] left-[calc(100%-200px)] !rounded-r-none origin-top-right flex items-center gap-8 px-0">
+              <div className="relative w-full h-full flex flex-col">
+                <DialogHeader className="h-auto">
+                  <DialogTitle className="text-sm text-head flex items-center gap-2 absolute -top-1 left-6">
+                    <svg
+                      className="w-6 h-6"
+                      focusable="false"
+                      aria-hidden="true"
+                      viewBox="0 0 20 23"
+                      data-testid="CartBagIcon"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.33329 7.37181V5.37181C5.33329 2.79431 7.42079 0.705139 9.99996 0.705139C12.5791 0.705139 14.6666 2.79431 14.6666 5.37181V7.37181H17.3333C18.4375 7.37181 19.3333 8.26764 19.3333 9.37181V18.0385C19.3333 20.2468 17.5416 22.0385 15.3333 22.0385H4.66663C2.45746 22.0385 0.666626 20.2468 0.666626 18.0385V9.37181C0.666626 8.26764 1.56204 7.37181 2.66663 7.37181H5.33329ZM7.33329 7.37181H12.6666V5.37181C12.6666 3.89889 11.4708 2.70514 9.99996 2.70514C8.52913 2.70514 7.33329 3.89889 7.33329 5.37181V7.37181ZM2.66663 9.37181V18.0385C2.66663 19.1426 3.56204 20.0385 4.66663 20.0385H15.3333C16.4375 20.0385 17.3333 19.1426 17.3333 18.0385V9.37181H14.6666V11.7051C14.6666 12.2593 14.2208 12.7051 13.6666 12.7051C13.1125 12.7051 12.6666 12.2593 12.6666 11.7051V9.37181H7.33329V11.7051C7.33329 12.2593 6.88746 12.7051 6.33329 12.7051C5.77913 12.7051 5.33329 12.2593 5.33329 11.7051V9.37181H2.66663Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                    <span>
+                      {cartItems
+                        .map((order) => order.quantity)
+                        .reduce((a, c) => a + c, 0)}{" "}
+                      items
+                    </span>
+                  </DialogTitle>
+                  <hr className="mt-8 w-full" />
+                </DialogHeader>
+                {cartItems.length > 0 ? (
+                  <>
+                    <div className="text-title-p w-full max-h-[485px] !scroll-auto overflow-auto cart-1">
+                      {cartItems.map((order) => {
+                        const search: Product | undefined = products?.find(
+                          (x) => x?.id === order?.id
+                        );
+                        if (search !== undefined) {
+                          return (
+                            <Mini_item_cart
+                              order={search}
+                              quantity={order.quantity}
+                              key={search.id}
+                            />
+                          );
+                        } else <></>;
+                      })}
+                    </div>
+                    <div className="flex flex-col px-6 w-full space-y-3 mt-6 absolute bottom-0">
+                      <Button
+                        variant={"default"}
+                        className=" w-full rounded-lg py-5 px-10 capitalize"
+                      >
+                        checkout now ($460.00)
+                      </Button>
+                      <Button
+                        variant={"outline"}
+                        className=" w-full rounded-lg py-5 px-10 capitalize"
+                      >
+                        view cart
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <div className="w-full h-full flex flex-col flex-wrap justify-center items-center gap-4">
+                    <img src="/shopping-bag.svg" alt="" />
+                    <div className="w-full">
+                      <p className="text-dark-gray w-1/2 text-center mx-auto">
+                        Your shopping bag is empty. Start shopping
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
       {!isScrolled && (

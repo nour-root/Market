@@ -13,7 +13,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
+import { cart_items } from "@/store/cart_items";
+import { useSetAtom, useAtomValue } from "jotai";
+import type { cartItem } from "@/store/types";
 export default function Card({ product }: { product: Product }) {
+  const arr_items = useAtomValue(cart_items);
+  const setArr_items = useSetAtom(cart_items);
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const button = e.currentTarget;
     const circle = document.createElement("span");
@@ -36,6 +41,15 @@ export default function Card({ product }: { product: Product }) {
 
     button.appendChild(circle);
   };
+  const AddToCart = (item_id: number) => {
+    const search: cartItem | undefined = arr_items.find(
+      (x: cartItem) => x.id === item_id
+    );
+    if (search !== undefined) return;
+    const newItem: cartItem = { id: item_id, quantity: 1 };
+    setArr_items((prev): cartItem[] => [...prev, newItem]);
+  };
+
   return (
     <div className="swiper-slide h-[468px] cursor-pointer rounded-lg border border-head/5 bg-white">
       <div className="overflow-hidden flex flex-col justify-between">
@@ -107,7 +121,10 @@ export default function Card({ product }: { product: Product }) {
                 ${product.price - 0.25}
               </del>
             </div>
-            <button className="border-[.5px] border-primary/50 text-primary rounded-lg p-[5px] transition-all duration-200 hover:outline hover:bg-primary/5 cursor-pointer">
+            <button
+              onClick={() => AddToCart(product.id)}
+              className="border-[.5px] border-primary/50 text-primary rounded-lg p-[5px] transition-all duration-200 hover:outline hover:bg-primary/5 cursor-pointer"
+            >
               <FaPlus />
             </button>
           </div>

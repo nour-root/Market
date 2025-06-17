@@ -241,3 +241,6 @@ span.ripple {
   background: var(--sb-thumb-color);
   border-radius: 3px;
 }
+.cart-1::-webkit-scrollbar {
+  width: 0;
+}

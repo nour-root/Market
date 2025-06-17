@@ -9,7 +9,7 @@ export default function Item_cart() {
         alt=""
       />
       <div className="p-4 flex w-full items-start justify-between gap-1">
-        <div className="flex flex-col gap-3 h-full justify-between">
+        <div className="flex flex-col gap-2 h-full justify-between">
           <p className="text-lg">NikeCourt Zoom Vapor Cage</p>
           <div className="flex space-x-2">
             <div className="text-icons-light-gray flex space-x-1">

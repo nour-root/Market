@@ -9,3 +9,7 @@ export type Product = {
     rate: number;
   };
 };
+export type cartItem = {
+  id: number;
+  quantity: number;
+};
