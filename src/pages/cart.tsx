@@ -2,17 +2,35 @@ import Item_cart from "@/Components/item_cart";
 import InputCountry from "@/Components/inputCountry";
 import { useState } from "react";
 import { Button } from "@/Components/ui/button";
+import { DataAtom } from "@/store/data";
+import { cart_items } from "@/store/cart_items";
+import { useAtomValue } from "jotai";
+import type { cartItem, Product } from "@/store/types";
 export default function Cart() {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
-
+  const products = useAtomValue(DataAtom);
+  const cartItems = useAtomValue(cart_items);
   return (
-    <div className="py-5 px-4 max-lg:relative max-lg:z-10 bg-backGround text-[#2B3445]">
-      <div className="flex max-lg:flex-col gap-5">
-        <div className="flex w-full flex-col gap-6 max-h-[400px] overflow-y-scroll cart-items p-2">
-          <Item_cart />
+    <div className="py-5 px-4 h-[600px] max-lg:relative max-lg:z-10 bg-backGround text-[#2B3445]">
+      <div className="flex max-lg:flex-col gap-5 h-full">
+        <div className="flex w-full flex-col gap-6 h-auto overflow-y-scroll cart-items p-2">
+          {cartItems?.map((x) => {
+            const order = x as cartItem;
+            const found: Product | undefined = products.find(
+              (o: Product) => o.id === order.id
+            );
+            if (found)
+              return (
+                <Item_cart
+                  key={found.id}
+                  order={found}
+                  quantity={order.quantity}
+                />
+              );
+          })}
         </div>
-        <div className="bg-white lg:w-1/2 p-6 rounded-[12px] border border-head/5 flex flex-col">
+        <div className="bg-white lg:w-1/2 lg:h-full p-6 rounded-[12px] border border-head/5 flex flex-col">
           <div className="w-full flex justify-between items-center">
             <p className="capitalize text-dark-gray">total:</p>
             <p className="capitalize">0.00</p>

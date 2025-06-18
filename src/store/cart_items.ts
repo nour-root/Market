@@ -1,3 +1,3 @@
-import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import type { cartItem } from "./types";
-export const cart_items = atom<cartItem[]>([]);
+export const cart_items = atomWithStorage<cartItem[]>("cart", []);

@@ -18,6 +18,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "./ui/dialog";
 import FieldForm from "../Components/fieldForm";
 import {
@@ -53,6 +54,12 @@ export default function Header() {
   const location = useLocation();
   const pathname = location.pathname;
   const cartItems = useAtomValue(cart_items);
+  const total = cartItems
+    .map((order) => {
+      const product = products.find((x) => x.id === order.id);
+      return product ? product.price * order.quantity : 0;
+    })
+    .reduce((a, c) => a + c, 0);
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const button = e.currentTarget;
     const circle = document.createElement("span");
@@ -433,18 +440,24 @@ export default function Header() {
                       })}
                     </div>
                     <div className="flex flex-col px-6 w-full space-y-3 mt-6 absolute bottom-0">
-                      <Button
-                        variant={"default"}
-                        className=" w-full rounded-lg py-5 px-10 capitalize"
-                      >
-                        checkout now ( )
-                      </Button>
-                      <Button
-                        variant={"outline"}
-                        className=" w-full rounded-lg py-5 px-10 capitalize"
-                      >
-                        view cart
-                      </Button>
+                      <DialogClose asChild>
+                        <Button
+                          variant={"default"}
+                          className=" w-full rounded-lg py-5 px-10 capitalize"
+                        >
+                          checkout now ( ${total})
+                        </Button>
+                      </DialogClose>
+                      <DialogClose asChild>
+                        <Link to={"/cart"}>
+                          <Button
+                            variant={"outline"}
+                            className=" w-full rounded-lg py-5 px-10 capitalize"
+                          >
+                            view cart
+                          </Button>
+                        </Link>
+                      </DialogClose>
                     </div>
                   </>
                 ) : (
