@@ -53,7 +53,6 @@ export default function Header() {
   const location = useLocation();
   const pathname = location.pathname;
   const cartItems = useAtomValue(cart_items);
-
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const button = e.currentTarget;
     const circle = document.createElement("span");
@@ -378,7 +377,7 @@ export default function Header() {
                   <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
                 </button>
                 {cartItems.length !== 0 ? (
-                  <div className="absolute w-5 h-5 rounded-full bg-primary -top-1 -right-1 text-sm flex items-center justify-center">
+                  <div className="absolute w-5 h-5 rounded-full bg-primary -top-1 -right-2 text-sm flex items-center justify-center">
                     {cartItems
                       .map((order) => order.quantity)
                       .reduce((a, c) => a + c, 0)}
@@ -438,7 +437,7 @@ export default function Header() {
                         variant={"default"}
                         className=" w-full rounded-lg py-5 px-10 capitalize"
                       >
-                        checkout now ($460.00)
+                        checkout now ( )
                       </Button>
                       <Button
                         variant={"outline"}
