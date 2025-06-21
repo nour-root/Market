@@ -350,7 +350,7 @@ export default function Header() {
             </div>
           )}
         </div>
-        <img src="/bazaar-black-sm.svg" className="lg:hidden -mr-10" alt="" />
+        <img src="/bazaar-black-sm.svg" className="lg:hidden" alt="" />
         <FieldForm />
         <div className="flex gap-3 items-center">
           <div
