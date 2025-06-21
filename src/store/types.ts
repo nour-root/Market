@@ -13,3 +13,13 @@ export type cartItem = {
   id: number;
   quantity: number;
 };
+export type ShippingFormFields = {
+  fullName: string;
+  phoneNumber: string;
+  email: string;
+  company: string;
+  address1: string;
+  address2: string;
+  zipCode: string;
+  Voucher: string;
+};

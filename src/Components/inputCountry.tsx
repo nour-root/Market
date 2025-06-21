@@ -9,11 +9,19 @@ export default function InputCountry() {
   const [inputValue, setInputValue] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const countryList = countries.getNames("en", { select: "official" });
     const sortedCountries = Object.values(countryList).sort();
     setAllCountries(sortedCountries);
     setFilteredCountries(sortedCountries);
+    const handleScroll = (): void => {
+      setIsScrolled(window.scrollY < 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const handleChange = (e: { target: { value: string } }) => {
@@ -33,8 +41,8 @@ export default function InputCountry() {
   };
 
   return (
-    <form
-      className="w-full flex items-center px-4 relative group space-y-6 rounded-lg border hover:border-head focus-within:outline focus-within:border-0 focus-within:outline-primary"
+    <div
+      className="w-full h-fit flex items-center px-4 relative group space-y-6 rounded-lg border hover:border-head focus-within:outline focus-within:border-0 focus-within:outline-primary"
       onFocus={() => {
         setIsFocused(true);
         setShowDropdown(true);
@@ -76,7 +84,11 @@ export default function InputCountry() {
 
       {/* Dropdown */}
       {showDropdown && filteredCountries.length > 0 && (
-        <ul className="absolute top-11 left-0 z-20 bg-white border border-gray-200 mt-1 w-full max-h-60 overflow-y-auto rounded-md shadow-md">
+        <ul
+          className={`absolute ${
+            isScrolled ? "-top-64" : "top-11"
+          } left-0 z-20 bg-white border border-gray-200 mt-1 w-full max-h-60 overflow-y-auto rounded-md shadow-md`}
+        >
           {filteredCountries.map((country, idx) => (
             <li
               key={idx}
@@ -88,6 +100,6 @@ export default function InputCountry() {
           ))}
         </ul>
       )}
-    </form>
+    </div>
   );
 }

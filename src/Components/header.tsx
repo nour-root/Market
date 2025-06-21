@@ -59,7 +59,8 @@ export default function Header() {
       const product = products.find((x) => x.id === order.id);
       return product ? product.price * order.quantity : 0;
     })
-    .reduce((a, c) => a + c, 0);
+    .reduce((a, c) => a + c, 0)
+    .toFixed(2);
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const button = e.currentTarget;
     const circle = document.createElement("span");
@@ -375,7 +376,11 @@ export default function Header() {
           </Link>
           <Dialog>
             <DialogTrigger asChild>
-              <div className="w-fit h-fit relative">
+              <div
+                className={`w-fit h-fit relative ${
+                  pathname === "/cart" ? "hidden" : ""
+                }`}
+              >
                 <button
                   type="button"
                   className={`relative overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl max-lg:hidden`}

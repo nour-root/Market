@@ -6,13 +6,16 @@ import GetAllProducts from "@/data/getAllProducts";
 import { IoIosArrowBack } from "react-icons/io";
 import Loader from "@/Components/shared/loader";
 import Star from "@/Components/shared/star";
-
+import type { cartItem } from "@/store/types";
+import { cart_items } from "@/store/cart_items";
+import { useAtomValue, useSetAtom } from "jotai";
 export default function Product() {
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState<Product | null>(null);
   const { title } = useParams<{ title: string | undefined }>();
   const productTitle = title ? decodeURIComponent(title) : "";
-
+  const arr_items = useAtomValue(cart_items);
+  const setArr_items = useSetAtom(cart_items);
   function handleClickImage(e: React.MouseEvent<HTMLDivElement>) {
     const image = e.target as HTMLElement;
     const div = e.currentTarget.children as HTMLCollectionOf<HTMLElement>;
@@ -28,7 +31,16 @@ export default function Product() {
       image.classList.add("img-active");
     }
   }
-
+  const AddToCart = (item_id: number | undefined) => {
+    const search: cartItem | undefined = arr_items.find(
+      (x: cartItem) => x.id === item_id
+    );
+    if (search !== undefined) return;
+    if (item_id) {
+      const newItem: cartItem = { id: item_id, quantity: 1 };
+      setArr_items((prev): cartItem[] => [...prev, newItem]);
+    }
+  };
   useEffect(() => {
     // ! here
     setLoading(true);
@@ -112,7 +124,10 @@ export default function Product() {
                 </p>
                 <p className="text-sm">Stock Available</p>
               </div>
-              <button className="text-sm text-white capitalize bg-primary px-7 py-2 rounded-[8px]">
+              <button
+                onClick={() => AddToCart(product?.id)}
+                className="text-sm text-white capitalize bg-primary px-7 py-2 rounded-[8px]"
+              >
                 add to cart
               </button>
             </div>
