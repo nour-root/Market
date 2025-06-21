@@ -9,7 +9,7 @@ export default function Cart() {
   const disPlayStep = (step: number) => {
     switch (step) {
       case 0:
-        return <CartPage />;
+        return <CartPage onStepClick={setCurrentStep} />;
       case 1:
         return <Checkout onStepClick={setCurrentStep} />;
       case 2:

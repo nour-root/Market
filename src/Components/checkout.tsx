@@ -57,8 +57,9 @@ export default function Checkout({
   };
 
   return (
-    <div className="flex max-lg:flex-col gap-5 h-full">
+    <div className="flex max-lg:flex-col-reverse gap-5 h-full ">
       <form
+        method="post"
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-6 w-full"
       >
@@ -83,7 +84,7 @@ export default function Checkout({
           </Button>
         </div>
       </form>
-      <div className="w-1/2 h-fit bg-white py-6 px-5 border rounded-lg">
+      <div className="w-1/2 h-fit bg-white py-6 px-5 border rounded-lg max-lg:w-full">
         <div className="text-[#7d879c] text-sm space-y-3">
           <div className="flex items-center justify-between">
             <p>Subtotal:</p>

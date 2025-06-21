@@ -10,7 +10,7 @@ export default function StepperProgress({
   steps: string[];
 }) {
   return (
-    <div className="w-full py-8">
+    <div className="w-full py-8 max-lg:hidden">
       <div className="flex items-center justify-center gap-12">
         <Stepper
           currentStep={currentStep}

@@ -7,7 +7,11 @@ import { useAtomValue } from "jotai";
 import type { cartItem, Product } from "@/store/types";
 import { useState } from "react";
 
-export default function CartPage() {
+export default function CartPage({
+  onStepClick,
+}: {
+  onStepClick: (index: number) => void;
+}) {
   const products = useAtomValue(DataAtom);
   const cartItems = useAtomValue(cart_items);
   const total = cartItems
@@ -154,9 +158,10 @@ export default function CartPage() {
         </div>
         <Button
           variant={"default"}
+          onClick={() => onStepClick(1)}
           className="transition-all mt-4 duration-300 hover:text-white hover:border-primary w-full text-white"
         >
-          Calculate Shipping
+          Checkout Now
         </Button>
       </form>
     </div>
