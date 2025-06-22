@@ -1,4 +1,5 @@
 import Cart from "@/pages/cart";
+import ErrorPage from "@/pages/errorPage";
 import Home from "@/pages/home";
 import Layout from "@/pages/layout";
 import Product from "@/pages/product";
@@ -11,6 +12,7 @@ const useRouter = () => {
     {
       path: "/",
       element: <Layout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "",
