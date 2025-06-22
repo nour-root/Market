@@ -201,7 +201,7 @@ export default function Header() {
           <LuMenu className="text-icons-light-gray text-2xl" />
         </button>
         <div className="flex items-center space-x-4 max-lg:hidden">
-          <img src="/logo2.svg" className="max-lg:hidden" alt="" />
+          <img src="/logo2.svg" alt="" />
           {isScrolled && (
             <div className="w-fit">
               <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
@@ -350,9 +350,13 @@ export default function Header() {
             </div>
           )}
         </div>
-        <img src="/bazaar-black-sm.svg" className="lg:hidden" alt="" />
+        <img
+          src="/bazaar-black-sm.svg"
+          className={`lg:hidden ${pathname === "/" ? "max-lg:-mr-12" : ""} `}
+          alt=""
+        />
         <FieldForm />
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-2 items-center">
           <div
             onClick={(e) => {
               handleClick(e);
@@ -383,13 +387,13 @@ export default function Header() {
               >
                 <button
                   type="button"
-                  className={`relative overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl max-lg:hidden`}
+                  className={`overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl max-lg:hidden`}
                   onClick={(e) => handleClick(e)}
                 >
                   <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
                 </button>
                 {cartItems.length !== 0 ? (
-                  <div className="absolute w-5 h-5 rounded-full bg-primary -top-1 -right-2 text-sm flex items-center justify-center">
+                  <div className="absolute w-5 h-5 rounded-full bg-primary -top-1 -right-2 max-lg:-top-5 text-sm flex items-center justify-center">
                     {cartItems
                       .map((order) => order.quantity)
                       .reduce((a, c) => a + c, 0)}
