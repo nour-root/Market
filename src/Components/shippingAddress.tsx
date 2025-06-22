@@ -2,16 +2,7 @@ import { useState } from "react";
 import InputCountry from "./inputCountry";
 import Input from "./input";
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
-type ShippingFormFields = {
-  fullName: string;
-  phoneNumber: string;
-  email: string;
-  company: string;
-  address1: string;
-  address2: string;
-  zipCode: string;
-  Voucher: string;
-};
+import type { ShippingFormFields } from "@/store/types";
 interface ShippingAddressProps {
   register: UseFormRegister<ShippingFormFields>;
   formState: FieldErrors<ShippingFormFields>;

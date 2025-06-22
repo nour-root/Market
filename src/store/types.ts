@@ -23,3 +23,13 @@ export type ShippingFormFields = {
   zipCode: string;
   Voucher: string;
 };
+export type BillingFormFields = {
+  fullName: string;
+  phoneNumber: string;
+  email: string;
+  company: string;
+  address1: string;
+  address2: string;
+  zipCode: string;
+  Voucher: string;
+};

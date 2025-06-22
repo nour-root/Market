@@ -1,14 +1,15 @@
 import Input from "./input";
 import { useState } from "react";
 import InputCountry from "./inputCountry";
-import type { ShippingFormFields } from "@/store/types";
+import type { BillingFormFields } from "@/store/types";
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
-
-interface ShippingAddressProps {
-  register: UseFormRegister<ShippingFormFields>;
-  formState: FieldErrors<ShippingFormFields>;
+import { Checkbox } from "./ui/checkbox";
+import { Label } from "./ui/label";
+interface BillingAddressProps {
+  register: UseFormRegister<BillingFormFields>;
+  formState: FieldErrors<BillingFormFields>;
 }
-export default function BillingAddress({ register }: ShippingAddressProps) {
+export default function BillingAddress({ register }: BillingAddressProps) {
   const [focusStates, setFocusStates] = useState({
     fullName: false,
     phoneNumber: false,
@@ -44,7 +45,18 @@ export default function BillingAddress({ register }: ShippingAddressProps) {
   return (
     <div className="py-6 px-4 space-y-4 bg-white border rounded-lg">
       <h3 className="capitalize">Billing Address</h3>
-      <div className="grid max-lg:grid-cols-1 grid-cols-2 gap-5">
+      <div className="flex items-start gap-3">
+        <Checkbox
+          id="terms-2"
+          onCheckedChange={() =>
+            document.querySelector(".Billing")?.classList.toggle("hidden")
+          }
+        />
+        <div className="grid gap-2">
+          <Label htmlFor="terms-2">Same as shipping address</Label>
+        </div>
+      </div>
+      <div className="grid max-lg:grid-cols-1 grid-cols-2 gap-5 Billing">
         <Input
           focusState={focusStates.fullName}
           inputValue={inputValues.fullName}

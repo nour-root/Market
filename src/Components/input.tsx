@@ -24,6 +24,10 @@ export default function Input({
   register,
   error,
 }: InputProps) {
+  const optionalFields = ["company", "address2", "Voucher"];
+  const validationRules = !optionalFields.includes(label)
+    ? { required: `${name} is required` }
+    : { require: false };
   return (
     <div className="space-y-2 flex flex-col justify-center">
       <div
@@ -48,7 +52,7 @@ export default function Input({
         </label>
         {register && (
           <input
-            {...register(`${label}`, { required: `${name} is required` })}
+            {...register(`${label}`, validationRules)}
             type={type}
             value={inputValue || ""}
             onChange={(e) => handleChange(label, e.target.value)}

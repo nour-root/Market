@@ -4,7 +4,7 @@ import BillingAddress from "./billingAddress";
 import ShippingAddress from "./shippingAddress";
 import Input from "./input";
 import { useForm } from "react-hook-form";
-import type { ShippingFormFields } from "@/store/types";
+import type { BillingFormFields, ShippingFormFields } from "@/store/types";
 export default function Checkout({
   onStepClick,
 }: {
@@ -16,13 +16,27 @@ export default function Checkout({
     handleSubmit,
     formState: { errors },
   } = useForm<ShippingFormFields>();
+  const {
+    register: register1,
+    handleSubmit: handleSubmit1,
+    formState: { errors: errors1 },
+  } = useForm<BillingFormFields>();
 
   const onSubmit = async () => {
-    const validate = await trigger();
-    console.log(validate);
+    const validate = await trigger([
+      "fullName",
+      "phoneNumber",
+      "address1",
+      "email",
+      "zipCode",
+    ]);
     if (!validate) return;
     onStepClick(2);
   };
+  const onSubmit1 = async () => {
+    onStepClick(2);
+  };
+
   const [focusStates, setFocusStates] = useState({
     fullName: false,
     phoneNumber: false,
@@ -60,11 +74,11 @@ export default function Checkout({
     <div className="flex max-lg:flex-col-reverse gap-5 h-full ">
       <form
         method="post"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit) || handleSubmit1(onSubmit1)}
         className="flex flex-col gap-6 w-full"
       >
         <ShippingAddress register={register} formState={errors} />
-        <BillingAddress register={register} formState={errors} />
+        <BillingAddress register={register1} formState={errors1} />
         <div className="w-full flex gap-4">
           <Button
             variant={"outline"}
