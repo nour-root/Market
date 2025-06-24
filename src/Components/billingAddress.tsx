@@ -1,4 +1,4 @@
-import Input from "./input";
+import Input from "./shared/input";
 import { useState } from "react";
 import InputCountry from "./inputCountry";
 import type { BillingFormFields } from "@/store/types";

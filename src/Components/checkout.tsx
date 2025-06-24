@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import BillingAddress from "./billingAddress";
 import ShippingAddress from "./shippingAddress";
-import Input from "./input";
+import Input from "./shared/input";
 import { useForm } from "react-hook-form";
 import type { BillingFormFields, ShippingFormFields } from "@/store/types";
 export default function Checkout({

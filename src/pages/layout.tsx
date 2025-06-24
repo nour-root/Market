@@ -1,7 +1,7 @@
 import Header from "@/Components/header";
 import NavBar from "@/Components/navBar";
 import Search from "@/Components/searchWindow";
-import Footer from "@/Components/footer";
+import Footer from "@/Components/shared/footer";
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router";
 import NProgress from "nprogress";

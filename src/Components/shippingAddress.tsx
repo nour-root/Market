@@ -1,6 +1,6 @@
 import { useState } from "react";
 import InputCountry from "./inputCountry";
-import Input from "./input";
+import Input from "./shared/input";
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
 import type { ShippingFormFields } from "@/store/types";
 interface ShippingAddressProps {
