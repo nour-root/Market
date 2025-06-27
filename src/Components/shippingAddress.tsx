@@ -48,7 +48,7 @@ export default function ShippingAddress({
     <div className="py-6 px-4 space-y-4 bg-white border rounded-lg">
       <h3 className="capitalize">Shipping Address</h3>
       <div className="grid max-lg:grid-cols-1 grid-cols-2 gap-5">
-        <Input
+        <Input<ShippingFormFields>
           focusState={focusStates.fullName}
           inputValue={inputValues.fullName}
           handleFocus={handleFocus}
@@ -59,8 +59,8 @@ export default function ShippingAddress({
           name="Full Name"
           register={register}
           error={formState.fullName?.message}
-        ></Input>
-        <Input
+        />
+        <Input<ShippingFormFields>
           focusState={focusStates.phoneNumber}
           inputValue={inputValues.phoneNumber}
           handleFocus={handleFocus}
@@ -71,8 +71,8 @@ export default function ShippingAddress({
           name="phone Number"
           register={register}
           error={formState.phoneNumber?.message}
-        ></Input>
-        <Input
+        />
+        <Input<ShippingFormFields>
           focusState={focusStates.email}
           inputValue={inputValues.email}
           handleFocus={handleFocus}
@@ -83,8 +83,8 @@ export default function ShippingAddress({
           name={"email address"}
           register={register}
           error={formState.email?.message}
-        ></Input>
-        <Input
+        />
+        <Input<ShippingFormFields>
           focusState={focusStates.company}
           inputValue={inputValues.company}
           handleFocus={handleFocus}
@@ -94,8 +94,8 @@ export default function ShippingAddress({
           label={"company"}
           name={"company"}
           register={register}
-        ></Input>
-        <Input
+        />
+        <Input<ShippingFormFields>
           focusState={focusStates.address1}
           inputValue={inputValues.address1}
           handleFocus={handleFocus}
@@ -106,8 +106,8 @@ export default function ShippingAddress({
           name={"address 1"}
           register={register}
           error={formState.address1?.message}
-        ></Input>
-        <Input
+        />
+        <Input<ShippingFormFields>
           focusState={focusStates.address2}
           inputValue={inputValues.address2}
           handleFocus={handleFocus}
@@ -117,9 +117,9 @@ export default function ShippingAddress({
           label={"address2"}
           name={"address 2"}
           register={register}
-        ></Input>
+        />
         <InputCountry />
-        <Input
+        <Input<ShippingFormFields>
           focusState={focusStates.zipCode}
           inputValue={inputValues.zipCode}
           handleFocus={handleFocus}
@@ -130,7 +130,7 @@ export default function ShippingAddress({
           name={"zip code"}
           register={register}
           error={formState.zipCode?.message}
-        ></Input>
+        />
       </div>
     </div>
   );

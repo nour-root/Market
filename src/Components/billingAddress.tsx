@@ -57,7 +57,7 @@ export default function BillingAddress({ register }: BillingAddressProps) {
         </div>
       </div>
       <div className="grid max-lg:grid-cols-1 grid-cols-2 gap-5 Billing">
-        <Input
+        <Input<BillingFormFields>
           focusState={focusStates.fullName}
           inputValue={inputValues.fullName}
           handleFocus={handleFocus}
@@ -67,8 +67,8 @@ export default function BillingAddress({ register }: BillingAddressProps) {
           label={"fullName"}
           name={"Full Name"}
           register={register}
-        ></Input>
-        <Input
+        />
+        <Input<BillingFormFields>
           focusState={focusStates.phoneNumber}
           inputValue={inputValues.phoneNumber}
           handleFocus={handleFocus}
@@ -78,8 +78,8 @@ export default function BillingAddress({ register }: BillingAddressProps) {
           label={"phoneNumber"}
           name={"Phone number"}
           register={register}
-        ></Input>
-        <Input
+        />
+        <Input<BillingFormFields>
           focusState={focusStates.email}
           inputValue={inputValues.email}
           handleFocus={handleFocus}
@@ -89,8 +89,8 @@ export default function BillingAddress({ register }: BillingAddressProps) {
           label={"email"}
           name={"Email Address"}
           register={register}
-        ></Input>
-        <Input
+        />
+        <Input<BillingFormFields>
           focusState={focusStates.company}
           inputValue={inputValues.company}
           handleFocus={handleFocus}
@@ -100,8 +100,8 @@ export default function BillingAddress({ register }: BillingAddressProps) {
           label={"company"}
           name={"company"}
           register={register}
-        ></Input>
-        <Input
+        />
+        <Input<BillingFormFields>
           focusState={focusStates.address1}
           inputValue={inputValues.address1}
           handleFocus={handleFocus}
@@ -111,8 +111,8 @@ export default function BillingAddress({ register }: BillingAddressProps) {
           label={"address1"}
           name={"address 1"}
           register={register}
-        ></Input>
-        <Input
+        />
+        <Input<BillingFormFields>
           focusState={focusStates.address2}
           inputValue={inputValues.address2}
           handleFocus={handleFocus}
@@ -122,9 +122,9 @@ export default function BillingAddress({ register }: BillingAddressProps) {
           label={"address2"}
           name={"address 2"}
           register={register}
-        ></Input>
+        />
         <InputCountry />
-        <Input
+        <Input<BillingFormFields>
           focusState={focusStates.zipCode}
           inputValue={inputValues.zipCode}
           handleFocus={handleFocus}
@@ -134,7 +134,7 @@ export default function BillingAddress({ register }: BillingAddressProps) {
           label={"zipCode"}
           name={"zip Code"}
           register={register}
-        ></Input>
+        />
       </div>
     </div>
   );

@@ -1,18 +1,6 @@
-import type { UseFormRegister } from "react-hook-form";
-import type { ShippingFormFields } from "@/store/types";
-interface InputProps {
-  handleFocus: (field: string) => void;
-  handleBlur: (field: string) => void;
-  handleChange: (field: string, value: string) => void;
-  focusState: boolean;
-  inputValue: string;
-  label: keyof ShippingFormFields;
-  name: string;
-  type?: string;
-  register?: UseFormRegister<ShippingFormFields>;
-  error?: string;
-}
-export default function Input({
+import type { InputProps } from "@/store/types";
+import type { FieldValues } from "react-hook-form";
+export default function Input<T extends FieldValues>({
   handleFocus,
   handleBlur,
   handleChange,
@@ -23,13 +11,13 @@ export default function Input({
   name,
   register,
   error,
-}: InputProps) {
+}: InputProps<T>) {
   const optionalFields = ["company", "address2", "Voucher"];
   const validationRules = !optionalFields.includes(label)
     ? { required: `${name} is required` }
     : { require: false };
   return (
-    <div className="space-y-2 flex flex-col justify-center">
+    <div className="space-y-2 flex flex-col justify-center w-full">
       <div
         className={`w-full flex items-center px-6 relative group space-y-6 rounded-lg border hover:border-head focus-within:outline focus-within:border-0 focus-within:outline-primary ${
           error ? "outline outline-primary border-0" : "outline-0 border"
@@ -48,11 +36,11 @@ export default function Input({
               : "top-3 left-6"
           }`}
         >
-          {name}
+          {label}
         </label>
         {register && (
           <input
-            {...register(`${label}`, validationRules)}
+            {...register(label, validationRules)}
             type={type}
             value={inputValue || ""}
             onChange={(e) => handleChange(label, e.target.value)}

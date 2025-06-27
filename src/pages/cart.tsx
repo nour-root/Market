@@ -13,7 +13,7 @@ export default function Cart() {
       case 1:
         return <Checkout onStepClick={setCurrentStep} />;
       case 2:
-        return <Payment />;
+        return <Payment onStepClick={setCurrentStep} />;
       default:
     }
   };

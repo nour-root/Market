@@ -73,7 +73,10 @@ export default function Card({ product }: { product: Product }) {
     const newItem: cartItem = { id: item_id, quantity: 1 };
     setArr_items((prev): cartItem[] => [...prev, newItem]);
   };
-
+  const getDiscountedPrice = (price: number, discount?: number) => {
+    if (!discount) return price;
+    return price - (price * discount) / 100;
+  };
   return (
     <div className="swiper-slide h-[468px] cursor-pointer rounded-lg border border-head/5 bg-white">
       <div className="overflow-hidden flex flex-col justify-between">
@@ -141,10 +144,10 @@ export default function Card({ product }: { product: Product }) {
           <div className="flex items-center justify-between">
             <div className="flex items-baseline gap-2">
               <p className="text-primary text-sm font-semibold">
-                {`$` + product.price}
+                {`$` + getDiscountedPrice(product.price, 25).toFixed(2)}
               </p>
               <del className="text-icons-light-gray text-xs font-semibold">
-                ${product.price - 0.25}
+                ${product.price}
               </del>
             </div>
             <button
