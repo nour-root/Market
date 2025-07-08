@@ -3,6 +3,7 @@ import ErrorPage from "@/pages/errorPage";
 import Home from "@/pages/home";
 import Layout from "@/pages/layout";
 import Product from "@/pages/product";
+import ProductsPage from "@/pages/ProductsPage";
 import { createBrowserRouter } from "react-router";
 
 // ! PAGE MUST BE INSIDE PAGE FOLDER
@@ -25,6 +26,10 @@ const useRouter = () => {
         {
           path: "cart",
           element: <Cart />,
+        },
+        {
+          path: "products/category/:category",
+          element: <ProductsPage />,
         },
       ],
     },

@@ -14,7 +14,7 @@ const Layout = () => {
   const setCartItems = useSetAtom(cart_items);
   useEffect(() => {
     if (location.state?.clearCart) {
-      setCartItems([]); // تنفيذ الحذف بعد الوصول
+      setCartItems([]);
     }
 
     NProgress.start();
