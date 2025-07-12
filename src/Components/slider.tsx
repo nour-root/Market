@@ -1,18 +1,26 @@
-import { useState, type ChangeEvent } from "react";
+import { type ChangeEvent } from "react";
 import "../customSlider.css";
-export default function Slider() {
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(300);
+export default function Slider({
+  setMax,
+  setMin,
+  minPrice,
+  maxPrice,
+}: {
+  setMax: (val: number) => void;
+  setMin: (val: number) => void;
+  minPrice: number;
+  maxPrice: number;
+}) {
   const min = 0;
-  const max = 300;
+  const max = 900;
   const handleMinChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = Math.min(Number(e.target.value), maxPrice - 1);
-    setMinPrice(value);
+    setMin(value);
   };
 
   const handleMaxChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = Math.max(Number(e.target.value), minPrice + 1);
-    setMaxPrice(value);
+    setMax(value);
   };
   const getPercent = (value: number) => ((value - min) / (max - min)) * 100;
   return (

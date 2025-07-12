@@ -1,6 +1,6 @@
 import GetAllProductById from "@/data/getProductById";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useParams, useMatch } from "react-router-dom";
 import type { Product } from "@/store/types";
 import GetAllProducts from "@/data/getAllProducts";
 import { IoIosArrowBack } from "react-icons/io";
@@ -10,6 +10,7 @@ import type { cartItem } from "@/store/types";
 import { cart_items } from "@/store/cart_items";
 import { useAtomValue, useSetAtom } from "jotai";
 export default function Product() {
+  const match = useMatch("products/category/:category/:title");
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState<Product | null>(null);
   const { title } = useParams<{ title: string | undefined }>();
@@ -73,12 +74,21 @@ export default function Product() {
       ) : (
         <>
           <div className="w-full h-fit">
-            <Link to={`/`}>
-              <button className="">
-                <IoIosArrowBack className="text-3xl" />
-              </button>
-            </Link>
+            {match ? (
+              <Link to={`/products/category/${match.params.category}`}>
+                <button>
+                  <IoIosArrowBack className="text-3xl" />
+                </button>
+              </Link>
+            ) : (
+              <Link to={`/`}>
+                <button>
+                  <IoIosArrowBack className="text-3xl" />
+                </button>
+              </Link>
+            )}
           </div>
+
           <div className="grid gap-10 max-lg:grid-cols-1 grid-cols-2">
             <div className="flex flex-col space-y-10">
               <div className="border border-[#e3e9ef] rounded-[24px] h-[300px] py-5">

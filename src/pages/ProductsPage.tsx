@@ -12,15 +12,33 @@ export default function ProductsPage() {
   const { category } = useParams();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState<Product[] | null>(null);
+  const [minPrice, setMinPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(900);
   const [sortOrder, setSortOrder] = useState("price low to high");
-  const sortedProducts = products?.slice().sort((a, b) => {
-    const priceA = Number(a.price);
-    const priceB = Number(b.price);
+  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const sortedProducts = products
+    ?.filter((product) => {
+      const price = product.price;
+      const isWithinPriceRange = price >= minPrice && price <= maxPrice;
+      const isMatchingRating =
+        selectedRating === null ||
+        Math.floor(product.rating.rate) === selectedRating;
 
-    return sortOrder === "price low to high"
-      ? priceA - priceB
-      : priceB - priceA;
-  });
+      return isWithinPriceRange && isMatchingRating;
+    })
+    .sort((a, b) => {
+      const priceA = Number(a.price);
+      const priceB = Number(b.price);
+
+      if (sortOrder === "price low to high") {
+        return priceA - priceB;
+      } else if (sortOrder === "price high to low") {
+        return priceB - priceA;
+      }
+
+      return 0; // no sort order
+    });
+
   useEffect(() => {
     if (category === "clothes") {
       GetAllProducts()
@@ -84,7 +102,7 @@ export default function ProductsPage() {
         <Loader />
       ) : (
         <div>
-          <div className="flex items-center">
+          <div className="flex items-center justify-between">
             <div className="sort w-full p-5">
               <DropDown onChange={setSortOrder} sortedProd={sortOrder} />
             </div>
@@ -102,7 +120,7 @@ export default function ProductsPage() {
               </svg>
               <svg
                 onClick={handleViewItem}
-                className="cursor-pointer icon-2"
+                className="cursor-pointer icon-2 max-lg:hidden"
                 height="20"
                 width="20"
                 viewBox="0 0 24 24"
@@ -114,24 +132,42 @@ export default function ProductsPage() {
                 />
               </svg>
             </div>
+            <svg
+              className="w-6 h-6 mx-1 lg:hidden fill-dark-gray"
+              focusable="false"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              data-testid="FilterListIcon"
+            >
+              <path d="M10 18h4v-2h-4zM3 6v2h18V6zm3 7h12v-2H6z"></path>
+            </svg>
           </div>
-          <div className="flex items-start gap-6">
-            <div className="w-[40%] px-3 space-y-6">
+          <div className="flex items-start gap-6 max-lg:flex-col">
+            <div className="lg:min-w-[30%] px-3 space-y-6 max-lg:hidden">
               <p className="font-medium text-sm capitalize">Categories</p>
               <hr />
-              <Slider />
+              <Slider
+                setMax={setMaxPrice}
+                setMin={setMinPrice}
+                maxPrice={maxPrice}
+                minPrice={minPrice}
+              />
               <hr />
-              <Rating />
+              <Rating setSelectedRating={setSelectedRating} />
             </div>
-            <div className="products-grid w-auto grid grid-cols-3 gap-4">
-              {sortedProducts?.map((x) => (
-                <Card2 product={x} key={x.id} />
-              ))}
+            <div className="products-grid w-auto grid grid-cols-3 gap-4 mx-auto lg:my-60 max-sm:grid-cols-1 max-md:grid-cols-2">
+              {sortedProducts?.length === 0 ? (
+                <p>not found</p>
+              ) : (
+                sortedProducts?.map((x) => <Card2 product={x} key={x.id} />)
+              )}
             </div>
             <div className="products-items w-full  flex-col space-y-8 hidden">
-              {sortedProducts?.map((x) => (
-                <Item product={x} key={x.id} />
-              ))}
+              {sortedProducts?.length === 0 ? (
+                <p>not found</p>
+              ) : (
+                sortedProducts?.map((x) => <Item product={x} key={x.id} />)
+              )}
             </div>
           </div>
         </div>

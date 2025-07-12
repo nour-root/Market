@@ -1,6 +1,6 @@
 import { FaPlus } from "react-icons/fa6";
 import type { Product } from "@/store/types";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import Star from "./shared/star";
 import { cart_items } from "@/store/cart_items";
 import { useSetAtom, useAtomValue } from "jotai";
@@ -36,7 +36,7 @@ export default function Card2({ product }: { product: Product }) {
     <div className="swiper-slide h-[468px] cursor-pointer rounded-lg border border-head/5 bg-white">
       <div className="overflow-hidden flex flex-col justify-between">
         <div className="relative w-full h-[400px] py-3 group flex items-center justify-center overflow-hidden">
-          <Link to={`products/${product.title}`}>
+          <Link to={`${product.title}`}>
             <img
               src={product.image}
               className="lg:h-full  w-auto max-sm:h-full transition-transform duration-400 transform group-hover:scale-55 scale-60"

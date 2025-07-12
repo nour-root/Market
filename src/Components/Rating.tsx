@@ -1,7 +1,10 @@
-export default function Rating() {
+export default function Rating({
+  setSelectedRating,
+}: {
+  setSelectedRating: (val: number) => void;
+}) {
   const renderStars = () => {
     const stars = [];
-
     for (let i = 5; i >= 1; i--) {
       const rowStars = [];
 
@@ -36,7 +39,13 @@ export default function Rating() {
           key={i}
           className="flex items-center space-x-2 mb-2 cursor-pointer group"
         >
-          <input type="radio" name="rating" className="hidden peer" value={i} />
+          <input
+            type="radio"
+            name="rating"
+            className="hidden peer"
+            value={i}
+            onChange={() => setSelectedRating(i)}
+          />
           <div className="w-5 h-5 rounded border border-gray-400 peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center text-white text-xs">
             ✓
           </div>
