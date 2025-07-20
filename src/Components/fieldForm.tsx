@@ -1,6 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import {
+  Form,
+  useSearchParams,
+  createSearchParams,
+  useNavigate,
+} from "react-router-dom";
+import {
   Select,
   SelectContent,
   SelectGroup,
@@ -11,7 +17,9 @@ import {
 import { IoIosSearch } from "react-icons/io";
 export default function FieldForm() {
   const [ripple, setRipple] = useState<{ x: number; y: number } | null>(null);
-
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const [search, setSearch] = useState(searchParams.get("q") || "");
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -20,19 +28,36 @@ export default function FieldForm() {
 
     setTimeout(() => setRipple(null), 600);
   };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const params = createSearchParams({ q: search });
+    navigate({ pathname: "products/search", search: params.toString() });
+  };
 
+  function handleCategoryChange(value: string) {
+    if (value === "all") {
+      navigate("/products/category/All Categories");
+    } else {
+      navigate(`/products/category/${value}`);
+    }
+  }
   return (
-    <form
+    <div
       className={`flex pointer-events-auto border border-[#e3e9ef] focus-within:outline-1 hover:border-head focus-within:border-0 focus-within:outline-primary justify-between items-center bg-[#f3f5f9] rounded-lg w-[670px] max-lg:hidden transition-colors duration-300`}
     >
-      <button className="px-4 border-r border-head/20 mr-3">
-        <IoIosSearch className="text-dark-gray text-2xl" />
-      </button>
-      <input
-        type="text"
-        placeholder="Searching for.."
-        className="text-gray-600 py-3 bg-transparent w-full focus-visible:outline-0 border-r border-r-head/20"
-      />
+      <Form className="flex w-full" name="search" onSubmit={handleSubmit}>
+        <button type="submit" className="px-4 mr-3 w-auto relative">
+          <IoIosSearch className="text-dark-gray text-2xl" />
+          <div className="absolute w-1 h-1/2 top-3 right-0 border-r border-head/20"></div>
+        </button>
+        <input
+          onChange={(e) => setSearch(e.target.value)}
+          type="text"
+          value={search}
+          placeholder="Searching for.."
+          className="text-gray-600 py-3 bg-transparent w-full focus-visible:outline-0 border-r border-r-head/20"
+        />
+      </Form>
       <div className="relative w-[200px] h-12 overflow-hidden">
         <AnimatePresence>
           {ripple && (
@@ -49,7 +74,7 @@ export default function FieldForm() {
             />
           )}
         </AnimatePresence>
-        <Select>
+        <Select onValueChange={handleCategoryChange}>
           <SelectTrigger
             onClick={handleClick}
             className="btn w-full flex justify-between data-[size=default]:h-full ring-0 shadow-none rounded-l-none  rounded-r text-dark-gray bg-transparent focus-visible:ring-0 not-focus-visible:border-none  focus-visible:border-0"
@@ -59,12 +84,12 @@ export default function FieldForm() {
           <SelectContent className="mt-1 w-[190px]  text-head">
             <SelectGroup>
               <SelectItem value="all">All Categories</SelectItem>
-              <SelectItem value="apple">Clothes</SelectItem>
-              <SelectItem value="banana">Electronics</SelectItem>
+              <SelectItem value="clothes">Clothes</SelectItem>
+              <SelectItem value="electronics">Electronics</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
       </div>
-    </form>
+    </div>
   );
 }

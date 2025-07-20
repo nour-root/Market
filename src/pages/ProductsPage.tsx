@@ -2,20 +2,27 @@ import DropDown from "@/Components/DropDown";
 import Loader from "@/Components/shared/loader";
 import GetAllProducts from "@/data/getAllProducts";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useLocation } from "react-router";
 import Slider from "@/Components/slider";
 import Rating from "@/Components/Rating";
 import type { Product } from "@/store/types";
 import Card2 from "@/Components/card2";
 import Item from "@/Components/Item";
+import { Button } from "@/Components/ui/button";
+import SideBarFilter from "@/Components/SideBarFilter";
 export default function ProductsPage() {
   const { category } = useParams();
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const gender = query.get("gender");
+  const valSearch = query.get("q");
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState<Product[] | null>(null);
   const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(900);
+  const [maxPrice, setMaxPrice] = useState<number>(1000);
   const [sortOrder, setSortOrder] = useState("price low to high");
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [display, setDisplay] = useState(false);
   const sortedProducts = products
     ?.filter((product) => {
       const price = product.price;
@@ -40,43 +47,51 @@ export default function ProductsPage() {
     });
 
   useEffect(() => {
-    if (category === "clothes") {
-      GetAllProducts()
-        .then((data) => {
-          setLoading(true);
-          const items: Product[] = data.filter((x: Product) =>
+    GetAllProducts()
+      .then((data) => {
+        setLoading(true);
+        let filtered = data;
+
+        if (category === "clothes") {
+          filtered = data.filter((x: Product) =>
             x.category.includes("clothing")
           );
-          setProducts(items);
-        })
-        .catch((error) => console.error(error))
-        .finally(() => setLoading(false));
-    }
-    if (category === "electronics") {
-      GetAllProducts()
-        .then((data) => {
-          setLoading(true);
-          const items: Product[] = data.filter((x: Product) =>
+
+          if (gender === "women") {
+            filtered = filtered.filter(
+              (x: Product) => x.category === "women's clothing"
+            );
+          } else if (gender === "men") {
+            filtered = filtered.filter(
+              (x: Product) => x.category === "men's clothing"
+            );
+          }
+        } else if (category === "electronics") {
+          filtered = data.filter((x: Product) =>
             x.category.includes("electronics")
           );
-          setProducts(items);
-        })
-        .catch((error) => console.error(error))
-        .finally(() => setLoading(false));
-    }
-    if (category === "jewelery") {
-      GetAllProducts()
-        .then((data) => {
-          setLoading(true);
-          const items: Product[] = data.filter((x: Product) =>
+        } else if (category === "jewelery") {
+          filtered = data.filter((x: Product) =>
             x.category.includes("jewelery")
           );
-          setProducts(items);
-        })
-        .catch((error) => console.error(error))
-        .finally(() => setLoading(false));
-    }
-  }, [category]);
+        } else if (category === "All Categories") {
+          filtered = data;
+        }
+        if (valSearch) {
+          filtered = filtered.filter((x: Product) =>
+            x.title.toLowerCase().includes(valSearch.toLowerCase())
+          );
+        }
+
+        setProducts(filtered);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [category, gender, valSearch]);
   function handleViewCard() {
     const list = document.querySelector(".products-items");
     list?.classList.add("hidden");
@@ -95,13 +110,20 @@ export default function ProductsPage() {
       ?.classList.replace("fill-primary", "fill-dark-gray");
     document.querySelector(".icon-2")?.classList.add("text-primary");
   }
-
+  function ClearAllFilters() {
+    setSelectedRating(null);
+    setMaxPrice(1000);
+    setMinPrice(0);
+  }
+  function handleFilterList() {
+    setDisplay(!display);
+  }
   return (
     <div className="min-h-dvh py-5 px-4 max-lg:relative max-lg:z-10 bg-white text-[#2B3445]">
       {loading ? (
         <Loader />
       ) : (
-        <div>
+        <div className="relative">
           <div className="flex items-center justify-between">
             <div className="sort w-full p-5">
               <DropDown onChange={setSortOrder} sortedProd={sortOrder} />
@@ -133,7 +155,8 @@ export default function ProductsPage() {
               </svg>
             </div>
             <svg
-              className="w-6 h-6 mx-1 lg:hidden fill-dark-gray"
+              onClick={handleFilterList}
+              className="w-6 h-6 mx-1 lg:hidden fill-dark-gray cursor-pointer"
               focusable="false"
               aria-hidden="true"
               viewBox="0 0 24 24"
@@ -143,7 +166,20 @@ export default function ProductsPage() {
             </svg>
           </div>
           <div className="flex items-start gap-6 max-lg:flex-col">
-            <div className="lg:min-w-[30%] px-3 space-y-6 max-lg:hidden">
+            <div className="lg:min-w-[25%] px-3 space-y-6 max-lg:hidden">
+              {valSearch ? (
+                <div>
+                  <p className="font-medium text-lg">
+                    <span className="capitalize">searching for</span> "
+                    {valSearch.toLocaleLowerCase()}"
+                  </p>
+                  <p className="text-dark-gray text-sm">
+                    {products?.length} result found
+                  </p>
+                </div>
+              ) : (
+                ""
+              )}
               <p className="font-medium text-sm capitalize">Categories</p>
               <hr />
               <Slider
@@ -153,7 +189,16 @@ export default function ProductsPage() {
                 minPrice={minPrice}
               />
               <hr />
-              <Rating setSelectedRating={setSelectedRating} />
+              <Rating
+                setSelectedRating={setSelectedRating}
+                selectedRating={selectedRating}
+              />
+              <Button
+                className="capitalize w-full cursor-pointer"
+                onClick={ClearAllFilters}
+              >
+                clear all filters
+              </Button>
             </div>
             <div className="products-grid w-auto grid grid-cols-3 gap-4 mx-auto lg:my-60 max-sm:grid-cols-1 max-md:grid-cols-2">
               {sortedProducts?.length === 0 ? (
@@ -162,9 +207,9 @@ export default function ProductsPage() {
                 sortedProducts?.map((x) => <Card2 product={x} key={x.id} />)
               )}
             </div>
-            <div className="products-items w-full  flex-col space-y-8 hidden">
+            <div className="products-items w-full h-dvh flex-col space-y-8 hidden">
               {sortedProducts?.length === 0 ? (
-                <p>not found</p>
+                <p className="w-full mx-[385px] my-[240px]">not found</p>
               ) : (
                 sortedProducts?.map((x) => <Item product={x} key={x.id} />)
               )}
@@ -172,6 +217,18 @@ export default function ProductsPage() {
           </div>
         </div>
       )}
+      <SideBarFilter
+        products={products}
+        display={display}
+        valSearch={valSearch}
+        setDisplay={setDisplay}
+        maxPrice={maxPrice}
+        minPrice={minPrice}
+        setMaxPrice={setMaxPrice}
+        setMinPrice={setMinPrice}
+        selectedRating={selectedRating}
+        setSelectedRating={setSelectedRating}
+      />
     </div>
   );
 }

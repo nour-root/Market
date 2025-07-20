@@ -32,6 +32,10 @@ const useRouter = () => {
           element: <ProductsPage />,
         },
         {
+          path: "products/search",
+          element: <ProductsPage />,
+        },
+        {
           path: "products/category/:category/:title",
           element: <Product />,
         },

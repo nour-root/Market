@@ -12,7 +12,7 @@ export default function Slider({
   maxPrice: number;
 }) {
   const min = 0;
-  const max = 900;
+  const max = 1000;
   const handleMinChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = Math.min(Number(e.target.value), maxPrice - 1);
     setMin(value);

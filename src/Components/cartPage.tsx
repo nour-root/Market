@@ -43,21 +43,29 @@ export default function CartPage({
   };
   return (
     <div className="flex max-lg:flex-col gap-5 h-full">
-      <div className="flex w-full flex-col gap-6 h-[600px] overflow-y-scroll cart-items p-2">
-        {cartItems?.map((x) => {
-          const order = x as cartItem;
-          const found: Product | undefined = products.find(
-            (o: Product) => o.id === order.id
-          );
-          if (found)
-            return (
-              <Item_cart
-                key={found.id}
-                order={found}
-                quantity={order.quantity}
-              />
+      <div
+        className={`flex w-full flex-col gap-6 ${
+          cartItems.length === 0 ? "h-[200px]" : "h-[600px]"
+        } overflow-y-scroll cart-items p-2`}
+      >
+        {cartItems.length > 0 ? (
+          cartItems?.map((x) => {
+            const order = x as cartItem;
+            const found: Product | undefined = products.find(
+              (o: Product) => o.id === order.id
             );
-        })}
+            if (found)
+              return (
+                <Item_cart
+                  key={found.id}
+                  order={found}
+                  quantity={order.quantity}
+                />
+              );
+          })
+        ) : (
+          <p className="mx-auto my-18">There are no orders</p>
+        )}
       </div>
       <form className="bg-white lg:w-1/2 lg:h-full p-6 rounded-[12px] border border-head/5 flex flex-col">
         <div className="w-full flex justify-between items-center">

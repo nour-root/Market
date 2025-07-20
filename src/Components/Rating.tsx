@@ -1,7 +1,9 @@
 export default function Rating({
   setSelectedRating,
+  selectedRating,
 }: {
   setSelectedRating: (val: number) => void;
+  selectedRating: number | null;
 }) {
   const renderStars = () => {
     const stars = [];
@@ -45,6 +47,7 @@ export default function Rating({
             className="hidden peer"
             value={i}
             onChange={() => setSelectedRating(i)}
+            checked={selectedRating === i}
           />
           <div className="w-5 h-5 rounded border border-gray-400 peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center text-white text-xs">
             ✓

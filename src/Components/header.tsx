@@ -190,7 +190,7 @@ export default function Header() {
       <div
         className={`px-6 py-3 flex items-center justify-between w-full bg-white transition-all duration-75 ${
           isScrolled
-            ? "fixed z-20 shadow-[0_5px_10px_rgba(0,0,0,0.1)] animate-slide-down"
+            ? "fixed z-30 shadow-[0_5px_10px_rgba(0,0,0,0.1)] animate-slide-down"
             : "relative"
         }`}
       >
@@ -292,20 +292,23 @@ export default function Header() {
                           <DropdownMenuSubContent className="ml-3 text-head space-y-3">
                             <div className="flex flex-col items-start pl-3 w-full">
                               <h6>Man</h6>
-                              <DropdownMenuItem className="w-full">
-                                clothes
-                              </DropdownMenuItem>
-                              <DropdownMenuItem className="w-full">
-                                shoes
+                              <DropdownMenuItem asChild className="w-full">
+                                <Link to="products/category/clothes?gender=men">
+                                  clothes
+                                </Link>
                               </DropdownMenuItem>
                             </div>
                             <div className="flex flex-col items-start pl-3 w-full">
                               <h6>Woman</h6>
-                              <DropdownMenuItem className="w-full">
-                                clothes
+                              <DropdownMenuItem asChild className="w-full">
+                                <Link to="products/category/clothes?gender=women">
+                                  clothes
+                                </Link>
                               </DropdownMenuItem>
-                              <DropdownMenuItem className="w-full">
-                                shoes
+                              <DropdownMenuItem asChild className="w-full">
+                                <Link to="products/category/jewelery">
+                                  jewelery
+                                </Link>
                               </DropdownMenuItem>
                             </div>
                           </DropdownMenuSubContent>
@@ -338,8 +341,16 @@ export default function Header() {
                         </DropdownMenuSubTrigger>
                         <DropdownMenuPortal>
                           <DropdownMenuSubContent className="ml-3 text-head">
-                            <DropdownMenuItem>mobiles</DropdownMenuItem>
-                            <DropdownMenuItem>ipads</DropdownMenuItem>
+                            <DropdownMenuItem>
+                              <Link to={`products/category/electronics`}>
+                                mobiles
+                              </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                              <Link to={`products/category/electronics`}>
+                                ipads
+                              </Link>
+                            </DropdownMenuItem>
                           </DropdownMenuSubContent>
                         </DropdownMenuPortal>
                       </DropdownMenuSub>
@@ -352,7 +363,9 @@ export default function Header() {
         </div>
         <img
           src="/bazaar-black-sm.svg"
-          className={`lg:hidden ${pathname === "/" ? "max-lg:-mr-12" : ""} `}
+          className={`lg:hidden ${
+            pathname === "/" ? "max-lg:-mr-12" : "-mr-10"
+          } `}
           alt=""
         />
         <FieldForm />
@@ -574,20 +587,23 @@ export default function Header() {
                         <DropdownMenuSubContent className="ml-3 text-head space-y-3">
                           <div className="flex flex-col items-start pl-3 w-full">
                             <h6>Man</h6>
-                            <DropdownMenuItem className="w-full">
-                              clothes
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="w-full">
-                              shoes
+                            <DropdownMenuItem asChild className="w-full">
+                              <Link to="products/category/clothes?gender=men">
+                                clothes
+                              </Link>
                             </DropdownMenuItem>
                           </div>
                           <div className="flex flex-col items-start pl-3 w-full">
                             <h6>Woman</h6>
-                            <DropdownMenuItem className="w-full">
-                              clothes
+                            <DropdownMenuItem asChild className="w-full">
+                              <Link to="products/category/clothes?gender=women">
+                                clothes
+                              </Link>
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="w-full">
-                              shoes
+                            <DropdownMenuItem asChild className="w-full">
+                              <Link to="products/category/jewelery">
+                                jewelery
+                              </Link>
                             </DropdownMenuItem>
                           </div>
                         </DropdownMenuSubContent>
@@ -616,8 +632,16 @@ export default function Header() {
                       </DropdownMenuSubTrigger>
                       <DropdownMenuPortal>
                         <DropdownMenuSubContent className="ml-3 text-head">
-                          <DropdownMenuItem>mobiles</DropdownMenuItem>
-                          <DropdownMenuItem>ipads</DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <Link to={`products/category/electronics`}>
+                              mobiles
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <Link to={`products/category/electronics`}>
+                              ipads
+                            </Link>
+                          </DropdownMenuItem>
                         </DropdownMenuSubContent>
                       </DropdownMenuPortal>
                     </DropdownMenuSub>
