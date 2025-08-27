@@ -13,11 +13,13 @@ export default function NavBar() {
       active: pathname === "/",
     },
     {
-      to: "/categories",
+      to: "/mobile-categories",
       label: "Categories",
       icon: (
         <svg
-          className="fill-head group-hover:fill-primary"
+          className={`fill-head group-hover:fill-primary ${
+            pathname === "/mobile-categories" ? "fill-primary" : ""
+          }`}
           height="20"
           width="20"
           viewBox="0 0 24 24"
@@ -25,12 +27,11 @@ export default function NavBar() {
         >
           <path
             d="M4 4h5v5H4zm-2 7V2h9v9zm2 4h5v5H4zm-2 7v-9h9v9zM20 4h-5v5h5zm-7-2v9h9V2zm2 13h5v5h-5zm-2 7v-9h9v9z"
-            fill=""
             fillRule="evenodd"
           />
         </svg>
       ),
-      active: pathname === "/categories",
+      active: pathname === "/mobile-categories",
     },
     {
       to: "/cart",
@@ -48,7 +49,7 @@ export default function NavBar() {
               active ? "text-primary" : "text-head"
             }`}
           >
-            <div className="group-hover:text-primary">{icon}</div>
+            <div className={`group-hover:text-primary`}>{icon}</div>
             <p className="text-[13px] capitalize group-hover:text-primary">
               {label}
             </p>

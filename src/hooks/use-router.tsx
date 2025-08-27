@@ -1,4 +1,5 @@
 import Cart from "@/pages/cart";
+import Category from "@/pages/category";
 import ErrorPage from "@/pages/errorPage";
 import Home from "@/pages/home";
 import Layout from "@/pages/layout";
@@ -39,6 +40,7 @@ const useRouter = () => {
           path: "products/category/:category/:title",
           element: <Product />,
         },
+        { path: "/mobile-categories", element: <Category /> },
       ],
     },
   ]);

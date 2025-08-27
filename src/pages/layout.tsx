@@ -31,7 +31,7 @@ const Layout = () => {
       <Outlet />
       <NavBar />
       <Search />
-      <Footer />
+      {location.pathname === "/mobile-categories" ? <></> : <Footer />}
     </>
   );
 };
