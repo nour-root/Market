@@ -6,9 +6,9 @@ interface PropLi {
   icon: React.ReactNode;
 }
 export default function Category() {
-  const [open, setOpen] = useState(false);
-  const [height, setHeight] = useState("0px");
-  const ref = useRef<HTMLUListElement>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [height, setHeight] = useState<string[]>([]);
+  const ref = useRef<(HTMLUListElement | null)[]>([]);
   const list: PropLi[] = [
     {
       title: "Fashion",
@@ -150,15 +150,36 @@ export default function Category() {
       ),
     },
   ];
+  const menuProducts = [
+    { title: "Man Clothes", prod: ["Shirt", "T- shirt", "Pant", "Underwear"] },
+    {
+      title: "Accessories",
+      prod: ["Belt", "Hat", "Watches", "Sunglasses"],
+    },
+    {
+      title: "Shoes",
+      prod: ["Sneakers", "Sandals", "Formal", "Casual"],
+    },
+    {
+      title: "Bags",
+      prod: ["Backpack", "Crossbody Bags", "Side Bags", "Slides"],
+    },
+    {
+      title: "Woman Clothes",
+      prod: ["Shirt", "T- shirt", "Pant", "Underwear"],
+    },
+  ];
   useEffect(() => {
-    if (open && ref.current) {
-      // expand to scrollHeight
-      setHeight(`${ref.current.scrollHeight}px`);
-    } else {
-      // collapse
-      setHeight("0px");
-    }
-  }, [open]);
+    // Update heights when openIndex changes
+    const newHeights = menuProducts.map((_, i) => {
+      if (openIndex === i && ref.current[i]) {
+        return `${ref.current[i]!.scrollHeight}px`;
+      }
+      return "0px";
+    });
+    setHeight(newHeights);
+  }, [openIndex]);
+
   return (
     <section className="flex ">
       <div className={`w-1/4 h-full text-head`}>
@@ -176,34 +197,41 @@ export default function Category() {
       </div>
       <div className="w-full text-head px-4 py-3 text-sm">
         <ul className="*:py-1 *:w-full">
-          <li className="flex flex-col">
-            <button
-              onClick={() => setOpen(!open)}
-              className="flex items-center justify-between w-full"
-            >
-              <span>la la la</span>
-              {open ? (
-                <ChevronRight
-                  size={16}
-                  className="transform rotate-90 transition-transform duration-150"
-                />
-              ) : (
-                <ChevronRight
-                  size={16}
-                  className="transform rotate-0 transition-transform duration-300"
-                />
-              )}
-            </button>
-            <ul
-              ref={ref}
-              style={{ height }}
-              className={`border-l border-gray-300 pl-2 *:pl-1 *:py-1  overflow-hidden transition-[height] duration-300 ease-in-out`}
-            >
-              <li>asdff</li>
-              <li>child 2</li>
-              <li>child 3</li>
-            </ul>
-          </li>
+          {menuProducts.map((item, i) => (
+            <li className="flex flex-col" key={i}>
+              <button
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="flex items-center justify-between w-full cursor-pointer"
+              >
+                <span className="font-semibold">{item.title}</span>
+                {openIndex === i ? (
+                  <ChevronRight
+                    size={16}
+                    className="transform rotate-90 transition-transform duration-150"
+                  />
+                ) : (
+                  <ChevronRight
+                    size={16}
+                    className="transform rotate-0 transition-transform duration-300"
+                  />
+                )}
+              </button>
+              <ul
+                key={i}
+                ref={(el) => {
+                  ref.current[i] = el;
+                }}
+                style={{ height: height[i] }}
+                className={`border-l border-gray-300 pl-2 *:pl-1 *:py-1  overflow-hidden transition-[height] duration-300 ease-in-out`}
+              >
+                {item.prod.map((p) => (
+                  <li key={p} className="cursor-pointer">
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
         </ul>
       </div>
     </section>
