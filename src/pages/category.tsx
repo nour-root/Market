@@ -7,8 +7,10 @@ interface PropLi {
 }
 export default function Category() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [active, setActive] = useState<number | null>(0);
   const [height, setHeight] = useState<string[]>([]);
   const ref = useRef<(HTMLUListElement | null)[]>([]);
+  const CateRef = useRef<(HTMLLIElement | null)[]>([]);
   const list: PropLi[] = [
     {
       title: "Fashion",
@@ -169,7 +171,29 @@ export default function Category() {
       prod: ["Shirt", "T- shirt", "Pant", "Underwear"],
     },
   ];
+  const gifts = [
+    "Electronics & Gadget",
+    "Music Instruments",
+    "Fashion",
+    "Home & Garden",
+    "Bikes",
+    "Gifts",
+    "Beauty Care",
+    "Dog Food",
+  ];
   useEffect(() => {
+    list.map((_, i) => {
+      if (active === i && CateRef.current[i]) {
+        return `${CateRef.current[i]!.classList.add(
+          "border-l-4",
+          "border-l-head"
+        )}`;
+      }
+      return `${CateRef.current[i]!.classList.remove(
+        "border-l-4",
+        "border-l-head"
+      )}`;
+    });
     // Update heights when openIndex changes
     const newHeights = menuProducts.map((_, i) => {
       if (openIndex === i && ref.current[i]) {
@@ -178,16 +202,20 @@ export default function Category() {
       return "0px";
     });
     setHeight(newHeights);
-  }, [openIndex]);
+  }, [openIndex, active]);
 
   return (
     <section className="flex ">
       <div className={`w-1/4 h-full text-head`}>
         <ul className="*:border-b *:border-r *:bg-accent">
-          {list.map((item) => (
+          {list.map((item, i) => (
             <li
-              key={item.title}
-              className="px-2 py-3 text-center flex flex-col items-center space-y-1 max-w-[87.2px] "
+              onMouseDown={() => setActive(i)}
+              key={i}
+              ref={(el) => {
+                CateRef.current[i] = el;
+              }}
+              className={`px-2 py-3 text-center flex flex-col items-center space-y-1 max-w-[87.2px] cursor-pointer`}
             >
               {item.icon}
               <p className="text-[11px] w-full truncate">{item.title}</p>
@@ -197,41 +225,49 @@ export default function Category() {
       </div>
       <div className="w-full text-head px-4 py-3 text-sm">
         <ul className="*:py-1 *:w-full">
-          {menuProducts.map((item, i) => (
-            <li className="flex flex-col" key={i}>
-              <button
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="flex items-center justify-between w-full cursor-pointer"
-              >
-                <span className="font-semibold">{item.title}</span>
-                {openIndex === i ? (
-                  <ChevronRight
-                    size={16}
-                    className="transform rotate-90 transition-transform duration-150"
-                  />
-                ) : (
-                  <ChevronRight
-                    size={16}
-                    className="transform rotate-0 transition-transform duration-300"
-                  />
-                )}
-              </button>
-              <ul
-                key={i}
-                ref={(el) => {
-                  ref.current[i] = el;
-                }}
-                style={{ height: height[i] }}
-                className={`border-l border-gray-300 pl-2 *:pl-1 *:py-1  overflow-hidden transition-[height] duration-300 ease-in-out`}
-              >
-                {item.prod.map((p) => (
-                  <li key={p} className="cursor-pointer">
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
+          {active !== 3 &&
+            menuProducts.map((item, i) => (
+              <li className="flex flex-col" key={i}>
+                <button
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="flex items-center justify-between w-full cursor-pointer"
+                >
+                  <span className="font-semibold">{item.title}</span>
+                  {openIndex === i ? (
+                    <ChevronRight
+                      size={16}
+                      className="transform rotate-90 transition-transform duration-150"
+                    />
+                  ) : (
+                    <ChevronRight
+                      size={16}
+                      className="transform rotate-0 transition-transform duration-300"
+                    />
+                  )}
+                </button>
+                <ul
+                  key={i}
+                  ref={(el) => {
+                    ref.current[i] = el;
+                  }}
+                  style={{ height: height[i] }}
+                  className={`border-l border-gray-300 pl-2 *:pl-1 *:py-1  overflow-hidden transition-[height] duration-300 ease-in-out`}
+                >
+                  {item.prod.map((p) => (
+                    <li key={p} className="cursor-pointer">
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          {active === 3 && (
+            <ul className="*:py-1 *:w-full">
+              {gifts.map((item) => (
+                <li className="font-semibold">{item}</li>
+              ))}
+            </ul>
+          )}
         </ul>
       </div>
     </section>
