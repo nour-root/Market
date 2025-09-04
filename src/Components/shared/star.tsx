@@ -11,7 +11,13 @@ const Star = ({ p }: { p: Product }) => {
     else fill = 0;
     const id = Math.random().toString(36).substring(2, 9);
     stars.push(
-      <svg viewBox="0 0 24 24" width="20" height="20" className="shrink-0">
+      <svg
+        key={i}
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        className="shrink-0"
+      >
         <defs>
           <linearGradient id={`grad-${id}`}>
             <stop offset={`${fill}%`} stopColor="#facc15" />

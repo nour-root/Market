@@ -48,7 +48,7 @@ export default function FlashDeals() {
         >
           <path d="M19.0765 9.48063H12.1242L15.5905 0L5 14.5194H11.9522L8.48592 24L19.0765 9.48063Z"></path>
         </svg>
-        <h1 className="text-[25px] text-head font-semibold">Flash Deals</h1>
+        <h1 className="text-[32px] text-head font-bold">Flash Deals</h1>
       </div>
       <div
         className="relative w-full"
