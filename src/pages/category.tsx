@@ -184,15 +184,9 @@ export default function Category() {
   useEffect(() => {
     list.map((_, i) => {
       if (active === i && CateRef.current[i]) {
-        return `${CateRef.current[i]!.classList.add(
-          "border-l-4",
-          "border-l-head"
-        )}`;
+        return `${CateRef.current[i]!.classList.add("before:bg-head")}`;
       }
-      return `${CateRef.current[i]!.classList.remove(
-        "border-l-4",
-        "border-l-head"
-      )}`;
+      return `${CateRef.current[i]!.classList.remove("before:bg-head")}`;
     });
     // Update heights when openIndex changes
     const newHeights = menuProducts.map((_, i) => {
@@ -215,7 +209,7 @@ export default function Category() {
               ref={(el) => {
                 CateRef.current[i] = el;
               }}
-              className={`px-2 py-3 text-center flex flex-col items-center space-y-1 max-w-[87.2px] cursor-pointer`}
+              className={`relative px-2 py-3 text-center flex flex-col items-center space-y-1 max-w-[87.2px] cursor-pointer before:absolute before:h-full before:w-1 before:left-0 before:top-0`}
             >
               {item.icon}
               <p className="text-[11px] w-full truncate">{item.title}</p>
