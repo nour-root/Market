@@ -304,13 +304,13 @@ export default function Header() {
               >
                 <button
                   type="button"
-                  className={`overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl `}
+                  className={`overflow-hidden hover:bg-[#4b566b0a] py-0 md:p-2 rounded-xl `}
                   onClick={(e) => handleClick(e)}
                 >
                   <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
                 </button>
                 {cartItems.length !== 0 ? (
-                  <div className="absolute w-5 h-5 rounded-full bg-primary -top-1 -right-2 max-lg:-top-5 text-sm flex items-center justify-center">
+                  <div className="absolute w-5 h-5 max-sm:w-4 max-sm:h-4 max-sm:text-[12px] rounded-full bg-primary -top-2 -right-3 max-lg:-top-3 text-sm flex items-center justify-center">
                     {cartItems
                       .map((order) => order.quantity)
                       .reduce((a, c) => a + c, 0)}
@@ -349,7 +349,7 @@ export default function Header() {
                 </DialogHeader>
                 {cartItems.length > 0 ? (
                   <>
-                    <div className="text-title-p w-full max-h-[485px] !scroll-auto overflow-auto cart-1">
+                    <div className="text-title-p w-full max-h-[485px] !scroll-auto overflow-auto cart-1 max-sm:mt-3">
                       {cartItems.map((order) => {
                         const search: Product | undefined = products?.find(
                           (x) => x?.id === order?.id
@@ -378,7 +378,7 @@ export default function Header() {
                         <Link to={"/cart"}>
                           <Button
                             variant={"outline"}
-                            className=" w-full rounded-lg py-5 px-10 capitalize"
+                            className="w-full rounded-lg py-5 px-10 capitalize"
                           >
                             view cart
                           </Button>
