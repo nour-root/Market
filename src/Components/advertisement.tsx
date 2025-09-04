@@ -9,10 +9,10 @@ export default function Advertisement() {
           className="object-cover w-full transform transition-all duration-500 group-hover:scale-110"
           alt=""
         />
-        <div className="absolute z-20 top-0 left-0 w-3/4 h-full p-8 flex flex-col justify-between">
-          <div className="text-head space-y-2">
+        <div className="absolute z-20 top-0 left-0 h-full p-5 md:p-8 flex flex-col justify-between">
+          <div className="text-head space-y-1 md:space-y-2 md:w-3/4">
             <h2 className="text-2xl font-bold capitalize">summer collection</h2>
-            <p>
+            <p className="text-sm md:text-lg">
               Save up to 50% on summer essentials including swimwear, dresses,
               sandals, and accessories
             </p>
@@ -28,10 +28,10 @@ export default function Advertisement() {
           className="w-full transform transition-all duration-500 group-hover:scale-110"
           alt=""
         />
-        <div className="absolute z-20 top-0 left-0 w-3/4 h-full p-8 flex flex-col justify-between">
-          <div className="text-head space-y-2">
+        <div className="absolute z-20 top-0 left-0 h-full p-5 md:p-8 flex flex-col justify-between">
+          <div className="text-head space-y-1 md:space-y-2 md:w-3/4">
             <h2 className="text-2xl font-bold capitalize">Spring Essentials</h2>
-            <p>
+            <p className="text-sm md:text-lg">
               Save up to 50% on spring essentials including jackets, rain boots,
               and seasonal accessories
             </p>
