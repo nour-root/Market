@@ -36,11 +36,13 @@ export default function SideBarFilter({
   return (
     <div
       onMouseDown={() => {
-        setDisplay(!display);
+        setDisplay(false);
         document.body.style.overflow = "auto";
       }}
       className={`absolute w-full h-full left-0 -top-40 transition-all duration-300 ${
-        display ? "bg-black/20 backdrop-blur-sm z-40" : "bg-transparent -z-10"
+        display
+          ? "bg-black/20 backdrop-blur-sm z-40 pointer-events-auto"
+          : "bg-transparent -z-10 pointer-events-none"
       }`}
     >
       <div

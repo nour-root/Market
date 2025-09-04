@@ -119,7 +119,7 @@ export default function ProductsPage() {
     setDisplay(!display);
   }
   return (
-    <div className="min-h-dvh py-5 px-4 max-lg:relative max-lg:z-10 bg-white text-[#2B3445]">
+    <div className="min-h-dvh py-5 px-4 relative max-lg:z-10 bg-white text-[#2B3445]">
       {loading ? (
         <Loader />
       ) : (
@@ -154,16 +154,17 @@ export default function ProductsPage() {
                 />
               </svg>
             </div>
-            <svg
-              onClick={handleFilterList}
-              className="w-6 h-6 mx-1 lg:hidden fill-dark-gray cursor-pointer"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              data-testid="FilterListIcon"
-            >
-              <path d="M10 18h4v-2h-4zM3 6v2h18V6zm3 7h12v-2H6z"></path>
-            </svg>
+            <button onClick={handleFilterList}>
+              <svg
+                className="w-6 h-6 mx-1 lg:hidden fill-dark-gray cursor-pointer"
+                focusable="false"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                data-testid="FilterListIcon"
+              >
+                <path d="M10 18h4v-2h-4zM3 6v2h18V6zm3 7h12v-2H6z"></path>
+              </svg>
+            </button>
           </div>
           <div className="flex items-start gap-6 max-lg:flex-col">
             <div className="lg:min-w-[25%] px-3 space-y-6 max-lg:hidden">

@@ -295,17 +295,6 @@ export default function Header() {
           >
             <IoIosSearch className="search text-icons-light-gray text-2xl lg:hidden relative overflow-hidden" />
           </div>
-          <Link to={"/cart"}>
-            <button
-              type="button"
-              className={`relative overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl lg:hidden ${
-                pathname === "/cart" ? "hidden" : ""
-              }`}
-              onClick={(e) => handleClick(e)}
-            >
-              <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
-            </button>
-          </Link>
           <Dialog>
             <DialogTrigger asChild>
               <div
@@ -315,7 +304,7 @@ export default function Header() {
               >
                 <button
                   type="button"
-                  className={`overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl max-lg:hidden`}
+                  className={`overflow-hidden hover:bg-[#4b566b0a] p-2 rounded-xl `}
                   onClick={(e) => handleClick(e)}
                 >
                   <MdOutlineShoppingBag className="text-icons-light-gray text-2xl" />
@@ -331,7 +320,7 @@ export default function Header() {
                 )}
               </div>
             </DialogTrigger>
-            <DialogContent className="!max-w-[400px] !h-[100%] left-[calc(100%-200px)] !rounded-r-none origin-top-right flex items-center gap-8 px-0">
+            <DialogContent className="!max-w-[400px] !h-[100%] max-sm:!max-w-[300px] max-sm:left-[calc(100%-150px)] left-[calc(100%-200px)] !rounded-r-none origin-top-right flex items-center gap-8 px-0">
               <div className="relative w-full h-full flex flex-col">
                 <DialogHeader className="h-auto">
                   <DialogTitle className="text-sm text-head flex items-center gap-2 absolute -top-1 left-6">
