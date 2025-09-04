@@ -209,7 +209,7 @@ export default function Category() {
               ref={(el) => {
                 CateRef.current[i] = el;
               }}
-              className={`relative px-2 py-3 text-center flex flex-col items-center space-y-1 max-w-[87.2px] cursor-pointer before:absolute before:h-full before:w-1 before:left-0 before:top-0`}
+              className={`relative px-2 py-3 text-center flex flex-col items-center space-y-1 max-w-[87.2px] cursor-pointer before:absolute before:h-full before:w-4 before:left-0 before:top-0`}
             >
               {item.icon}
               <p className="text-[11px] w-full truncate">{item.title}</p>
