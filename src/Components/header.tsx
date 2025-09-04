@@ -320,7 +320,7 @@ export default function Header() {
                 )}
               </div>
             </DialogTrigger>
-            <DialogContent className="!max-w-[400px] !h-[100%] max-sm:!max-w-[300px] max-sm:left-[calc(100%-150px)] left-[calc(100%-200px)] !rounded-r-none origin-top-right flex items-center gap-8 px-0">
+            <DialogContent className="!max-w-[400px] !h-[100%] max-sm:!max-w-[330px] max-sm:left-[calc(100%-160px)] left-[calc(100%-200px)] !rounded-r-none origin-top-right flex items-center gap-8 px-0">
               <div className="relative w-full h-full flex flex-col">
                 <DialogHeader className="h-auto">
                   <DialogTitle className="text-sm text-head flex items-center gap-2 absolute -top-1 left-6">

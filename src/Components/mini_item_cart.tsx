@@ -63,7 +63,7 @@ export default function Mini_item_cart({
         </div>
         <button
           onClick={Remove_item}
-          className="text-icons-light-gray text-lg max-[424px]:absolute max-[424px]:top-3 max-[424px]:right-3 hover:bg-[#4b566b0a] p-1 rounded-lg"
+          className="text-icons-light-gray text-lg self-start md:self-center hover:bg-[#4b566b0a] p-1 rounded-lg"
         >
           <HiXMark />
         </button>
