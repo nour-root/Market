@@ -1,7 +1,6 @@
 import { Button } from "../Components/ui/button";
 import { useAtomValue, useSetAtom } from "jotai";
 import { MdOutlineShoppingBag } from "react-icons/md";
-import { LuMenu } from "react-icons/lu";
 import { IoIosSearch } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
@@ -36,6 +35,7 @@ import { DataAtom } from "@/store/data";
 import type { Product } from "@/store/types";
 import MiniHead from "./miniHead";
 import Head from "./Head";
+import Menu from "./Menu";
 export default function Header() {
   const products = useAtomValue(DataAtom);
   const search = useAtomValue(SearchWindow);
@@ -109,12 +109,7 @@ export default function Header() {
             : "relative"
         }`}
       >
-        <button
-          className="hover:bg-[#4b566b0a] p-2 rounded-2xl lg:hidden relative overflow-hidden"
-          onClick={(e) => handleClick(e)}
-        >
-          <LuMenu className="text-icons-light-gray text-2xl" />
-        </button>
+        <Menu />
         <div className="flex items-center space-x-4 max-lg:hidden">
           <img src="/logo2.svg" alt="" />
           {isScrolled && (

@@ -96,7 +96,11 @@ export default function Card({ product }: { product: Product }) {
               </DialogTrigger>
               <DialogContent className="!max-w-[800px] flex items-center gap-8 px-6">
                 <div className="w-1/2 h-full p-10">
-                  <img src={product.image} className="w-auto" alt="" />
+                  <img
+                    src={product.image}
+                    className="w-auto object-cover"
+                    alt=""
+                  />
                 </div>
                 <div className="w-full flex flex-col py-4 space-y-6">
                   <DialogHeader>

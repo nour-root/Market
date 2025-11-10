@@ -119,7 +119,7 @@ export default function ProductsPage() {
     setDisplay(!display);
   }
   return (
-    <div className="min-h-dvh py-5 px-4 relative max-lg:z-10 bg-white text-[#2B3445]">
+    <div className="min-h-screen py-5 px-4 relative max-lg:z-10 bg-white text-[#2B3445]">
       {loading ? (
         <Loader />
       ) : (
@@ -208,7 +208,7 @@ export default function ProductsPage() {
                 sortedProducts?.map((x) => <Card2 product={x} key={x.id} />)
               )}
             </div>
-            <div className="products-items w-full h-dvh flex-col space-y-8 hidden">
+            <div className="products-items w-full min-h-screen flex-col space-y-8 hidden">
               {sortedProducts?.length === 0 ? (
                 <p className="w-full mx-[385px] my-[240px]">not found</p>
               ) : (

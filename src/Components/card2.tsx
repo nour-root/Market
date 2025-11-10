@@ -39,7 +39,7 @@ export default function Card2({ product }: { product: Product }) {
           <Link to={`${product.title}`}>
             <img
               src={product.image}
-              className="lg:h-full  w-auto max-sm:h-full transition-transform duration-400 transform group-hover:scale-55 scale-60"
+              className="lg:h-full  object-cover w-auto max-sm:h-full transition-transform duration-400 transform group-hover:scale-55 scale-60"
               alt=""
             />
           </Link>
